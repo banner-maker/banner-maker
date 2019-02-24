@@ -2,6 +2,27 @@
   text-align: center;
 }
 
+.textInput {
+  margin: 20px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+.hexLabel {
+  margin: 10px;
+  font-size: 0.8em;
+}
+
+.sampleRect {
+  width: 40px;
+  height: 40px;
+  background-color: beige;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -19,15 +40,23 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.previewCanvas {
+  background-color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.downbutton:hover {
+  background-color: salmon;
+}
+
+.downbutton {
+  width: 240px;
+  height: 60px;
+  color: #fff;
+  font-size: 0.8em;
+  background-color: tomato;
+  border: none;
+}
+
+.paletteWrapper {
+  padding-bottom: 20px;
 }
