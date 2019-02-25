@@ -16,14 +16,13 @@ class Preview extends Component {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // set text
-    ctx.font = "40px Times New Roman";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    this.setFont(canvas, text, {
+      color: "white",
+      size: "40",
+      font: "Arial"
+    });
   }
   componentDidUpdate() {
-    console.log("didupdate");
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext("2d");
     const { color, text } = this.props;
@@ -31,11 +30,25 @@ class Preview extends Component {
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "white";
+    this.setFont(canvas, text, {
+      color: "white",
+      size: "40",
+      font: "Arial"
+    });
+
+    const url = canvas.toDataURL();
+    console.log(url);
+  }
+
+  setFont = (canvas, text, args) => {
+    const ctx = canvas.getContext("2d");
+    const { color, size, font } = args;
+    ctx.font = `${size}px ${font}`;
+    ctx.fillStyle = color;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-  }
+  };
 
   render() {
     return (
