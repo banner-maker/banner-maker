@@ -3,6 +3,7 @@ import "./App.css";
 import Palette from "./Palette";
 import Preview from "./Preview";
 import TextInput from "./TextInput";
+import Header from "./Header";
 
 class App extends Component {
   state = {
@@ -33,9 +34,10 @@ class App extends Component {
   };
 
   render() {
-    const { color, text, href } = this.state;
+    const { colorType, color, text, href } = this.state;
     return (
       <div className="App">
+        <Header />
         <Preview
           color={color}
           text={text}
@@ -43,7 +45,11 @@ class App extends Component {
           updateCanvas={this.handleCanvasChange}
         />
         <TextInput onChange={this.handleTextChange} />
-        <Palette color={color} onChange={this.handleChange} />
+        <Palette
+          colorType={colorType}
+          color={color}
+          onChange={this.handleChange}
+        />
         <a href={href} className="downbutton" download="banner-image.png">
           Download (PNG)
         </a>
