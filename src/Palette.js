@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CirclePicker } from "react-color";
+import { CirclePicker, HuePicker } from "react-color";
 
 class Palette extends Component {
   render() {
@@ -12,7 +12,12 @@ class Palette extends Component {
         <div className="sampleRect" style={divStyle} />
         <div className="hexLabel">{color}</div>
         <div className="paletteWrapper">
-          <CirclePicker color={color} onChange={onChange} />
+          <div className="circlePicker">
+            <CirclePicker color={color} onChange={onChange} />
+          </div>
+          <div className="huePicker">
+            <HuePicker color={color} onChange={onChange} />
+          </div>
         </div>
       </>
     );

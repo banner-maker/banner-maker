@@ -6,10 +6,10 @@ import TextInput from "./TextInput";
 
 class App extends Component {
   state = {
+    colorType: "background",
     color: "#ccc",
     text: "Sample Text",
-    href: "",
-    download: "banner-image.png"
+    href: ""
   };
 
   componentDidMount() {
@@ -28,32 +28,25 @@ class App extends Component {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
   };
 
-  clickDownload = e => {
-    // this.setState({ href:})
-    // var href = mainCanvas.toDataURL();
-    // this.href = href;
-    // this.download = "npjy.png";
-  };
-
-  handleCanvasChange = e => {
-    console.log("canvas");
+  handleCanvasChange = href => {
+    this.setState({ href });
   };
 
   render() {
-    const { color, text, href, download } = this.state;
+    const { color, text, href } = this.state;
     return (
       <div className="App">
-        <Preview color={color} text={text} onChange={this.handleCanvasChange} />
+        <Preview
+          color={color}
+          text={text}
+          href={href}
+          updateCanvas={this.handleCanvasChange}
+        />
         <TextInput onChange={this.handleTextChange} />
         <Palette color={color} onChange={this.handleChange} />
-        <button
-          className="downbutton"
-          href={href}
-          download={download}
-          onClick={this.clickDownload}
-        >
+        <a href={href} className="downbutton" download="banner-image.png">
           Download (PNG)
-        </button>
+        </a>
       </div>
     );
   }

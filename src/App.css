@@ -46,13 +46,22 @@
   width: 240px;
   height: 60px;
   color: #fff;
-  font-size: 0.6em;
+  font-size: 0.8em;
   background-color: tomato;
   border: none;
   margin: 8px;
+  text-decoration: none;
+  line-height: 60px;
 }
 
 .paletteWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 5px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.huePicker {
+  padding: 20px;
 }
