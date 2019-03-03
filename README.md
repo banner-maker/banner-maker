@@ -12,10 +12,13 @@ Can create a simple banner and download.
 - [X] GA
 - [X] Deploy to Netlify
 - [X] Set custom domain
-- [ ] Choose font-family
+- [X] Choose font-family
+- [X] Choose font-size
+- [X] Add footer & header
 - [ ] Set font color
 - [ ] Upload other background image
 - [ ] Upload logo image
+- [ ] Add more font family & CDN web font & support Korean
 
 ## License
 MIT
