@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./styles/App.scss";
+import "antd/dist/antd.css";
 import Palette from "./Palette";
 import Preview from "./Preview";
 import TextInput from "./TextInput";

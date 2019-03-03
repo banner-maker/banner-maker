@@ -1,0 +1,96 @@
+$primaryColor: salmon;
+
+@font-face {
+  font-family: "SF Pro";
+  font-style: light;
+  src: url("fonts/SF-Pro-Display-Light.otf");
+}
+
+@function shade($color) {
+  @return mix(black, $color, 30%);
+}
+
+html,
+body {
+  margin: 0;
+}
+
+.App {
+  font-family: SF Pro;
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.previewCanvas {
+  margin: 10px;
+  background-color: #fff;
+}
+
+.textInput {
+  margin: 20px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.hexLabel {
+  margin: 12px;
+  font-size: 1em;
+  color: #fff;
+}
+
+.sampleRect {
+  width: 30px;
+  height: 30px;
+  background-color: beige;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 100ms ease 0s;
+  }
+}
+
+.downbutton {
+  width: 200px;
+  height: 60px;
+  color: #fff;
+  background-color: $primaryColor;
+  margin: 5px;
+  font-size: 1.3em;
+  text-decoration: none;
+  line-height: 60px;
+  border-radius: 10px;
+  transition: 0.3s;
+  &:hover,
+  &:visited,
+  &:active {
+    background-color: shade($primaryColor);
+    color: #ccc;
+    text-decoration: none;
+  }
+}
+
+.paletteWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.huePicker {
+  padding: 20px;
+}
