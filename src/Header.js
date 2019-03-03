@@ -13,13 +13,14 @@ class Header extends Component {
             src="https://www.googletagmanager.com/gtag/js?id=UA-80202920-2"
           />
           <script>
-            {`
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-80202920-2');`}
+            {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());gtag('config', 'UA-80202920-2');`}
           </script>
         </Helmet>
+        <div className="header">
+          <div className="headerTitle">[ Banner Maker ]</div>
+        </div>
       </>
     );
   }

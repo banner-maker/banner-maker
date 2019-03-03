@@ -7,34 +7,30 @@ class Preview extends Component {
   }
 
   componentDidMount() {
-    const canvas = this.canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const { color, text } = this.props;
-
-    // set background color
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // set text
-    this.setFont(canvas, text, {
-      color: "white",
-      size: "40",
-      font: "Arial"
-    });
+    // const canvas = this.canvasRef.current;
+    // const ctx = canvas.getContext("2d");
+    // const { color, text, fontSize } = this.props;
   }
 
   componentDidUpdate() {
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext("2d");
-    const { color, text, updateCanvas, href } = this.props;
+    const {
+      color,
+      text,
+      fontSize,
+      fontFamily,
+      updateCanvas,
+      href
+    } = this.props;
 
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     this.setFont(canvas, text, {
       color: "white",
-      size: "40",
-      font: "Arial"
+      size: fontSize,
+      font: fontFamily
     });
 
     const url = canvas.toDataURL();

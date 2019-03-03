@@ -2,8 +2,20 @@ $primaryColor: salmon;
 
 @font-face {
   font-family: "SF Pro";
-  font-style: light;
+  font-weight: 100;
+  src: url("fonts/SF-Pro-Display-Ultralight.otf");
+}
+
+@font-face {
+  font-family: "SF Pro";
+  font-weight: 200;
   src: url("fonts/SF-Pro-Display-Light.otf");
+}
+
+@font-face {
+  font-family: "SF Pro";
+  font-weight: 300;
+  src: url("fonts/SF-Pro-Display-Medium.otf");
 }
 
 @function shade($color) {
@@ -12,18 +24,46 @@ $primaryColor: salmon;
 
 html,
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
 }
 
 .App {
-  font-family: SF Pro;
-  text-align: center;
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: SF Pro;
+  font-weight: 100;
+  text-align: center;
+  background-color: #282c34;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.headerTitle {
+  font-size: 1.5em;
+  margin: 20px;
+  color: white;
+}
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+input::-webkit-input-placeholder {
+  font-family: SF Pro;
+  font-weight: 100;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -65,13 +105,14 @@ input:focus::-webkit-input-placeholder {
 
 .downbutton {
   width: 200px;
-  height: 60px;
+  height: 50px;
   color: #fff;
   background-color: $primaryColor;
   margin: 5px;
   font-size: 1.3em;
+  font-weight: 200;
   text-decoration: none;
-  line-height: 60px;
+  line-height: 50px;
   border-radius: 10px;
   transition: 0.3s;
   &:hover,
@@ -93,4 +134,38 @@ input:focus::-webkit-input-placeholder {
 
 .huePicker {
   padding: 20px;
+}
+.editorWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  margin: 8px;
+  padding: 5px;
+  justify-content: center;
+}
+
+.editoritem {
+  margin: 0px 5px 0px 5px;
+}
+
+.fontSelect {
+  font-weight: 200;
+}
+
+.Footer {
+  flex-shrink: 0.3;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerContent {
+  padding: 10px;
+}
+
+.godori {
+  cursor: pointer;
 }
