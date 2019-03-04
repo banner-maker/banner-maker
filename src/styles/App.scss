@@ -41,18 +41,6 @@ body {
   background-color: #282c34;
 }
 
-.header {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.headerTitle {
-  font-size: 1.5em;
-  margin: 20px;
-  color: white;
-}
 .content {
   flex-grow: 1;
   display: flex;
@@ -68,11 +56,6 @@ input::-webkit-input-placeholder {
 
 input:focus::-webkit-input-placeholder {
   color: transparent;
-}
-
-.previewCanvas {
-  margin: 10px;
-  background-color: #fff;
 }
 
 .textInput {
@@ -150,22 +133,4 @@ input:focus::-webkit-input-placeholder {
 
 .fontSelect {
   font-weight: 200;
-}
-
-.Footer {
-  flex-shrink: 0.3;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.footerContent {
-  padding: 10px;
-}
-
-.godori {
-  cursor: pointer;
 }

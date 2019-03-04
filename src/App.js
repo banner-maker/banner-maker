@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./styles/App.scss";
 import "antd/dist/antd.css";
-import Palette from "./Palette";
-import Preview from "./Preview";
-import TextInput from "./TextInput";
-import Header from "./Header";
-import Footer from "./Footer";
-import Editor from "./Editor";
+import Palette from "./components/Palette";
+import Preview from "./components/Preview";
+import Input from "./components/Input";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Editor from "./components/Editor";
 
 class App extends Component {
   state = {
@@ -16,7 +16,7 @@ class App extends Component {
     href: "",
     fontFamily: "SF Pro",
     fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
-    fontSizeList: [10, 20, 30, 40, 50, 60],
+    fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
     fontSize: "40"
   };
 
@@ -70,7 +70,7 @@ class App extends Component {
             fontSize={fontSize}
             updateCanvas={this.handleCanvasChange}
           />
-          <TextInput onChange={this.handleTextChange} />
+          <Input onChange={this.handleTextChange} />
           <Editor
             colorType={colorType}
             fontFamilyList={fontFamilyList}
@@ -87,8 +87,7 @@ class App extends Component {
             Download
           </a>
         </div>
-
-        <Footer />
+        <Footer project="banner-maker" />
       </div>
     );
   }

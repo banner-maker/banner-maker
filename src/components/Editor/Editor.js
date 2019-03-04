@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SelectMenu from "./SelectMenu";
+import SelectMenu from "../SelectMenu";
 
 class Editor extends Component {
   render() {

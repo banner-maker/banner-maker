@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import "./Header.scss";
 
 class Header extends Component {
   render() {
