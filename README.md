@@ -19,6 +19,12 @@ Can create a simple banner and download.
 - [ ] Upload other background image
 - [ ] Upload logo image
 - [ ] Add more font family & CDN web font & support Korean
+- [ ] Multie Lines
+- [ ] More colors
+- [ ] Mobile (responsive)
+- [ ] Arrange directory structure
+
+- Want to submit an [issue](https://github.com/godori/banner-maker/issues) to this project?
 
 ## License
 MIT
