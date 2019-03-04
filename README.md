@@ -4,6 +4,8 @@ Can create a simple banner and download.
 
 [DEMO](https://banner.godori.dev)
 
+Want to submit an [issue](https://github.com/godori/banner-maker/issues) to this project?
+
 ## TDL
 - [X] Canvas for preview
 - [X] Color picker
@@ -24,7 +26,8 @@ Can create a simple banner and download.
 - [ ] Mobile (responsive)
 - [ ] Arrange directory structure
 
-- Want to submit an [issue](https://github.com/godori/banner-maker/issues) to this project?
+
+
 
 ## License
 MIT
