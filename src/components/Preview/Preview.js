@@ -47,14 +47,15 @@ class Preview extends Component {
   drawText = (canvas, text, fontSize, lineHeight) => {
     const ctx = canvas.getContext('2d');
     const defaultWidth = canvas.width / 2;
+    const defaultHeight = canvas.height / 2;
+    const fontHeight = (fontSize * lineHeight);
     const SEPARATOR = '\\n';
     const lines = text.split(SEPARATOR);
-    const defaultHeight = canvas.height / 2;
-    const middle = parseInt(lines.length / 2);
 
     if (lines.length % 2) {
       lines.map((line, index) => {
-        const h = defaultHeight + ((index - middle) * fontSize * lineHeight);
+        const middle = parseInt(lines.length / 2);
+        const h = defaultHeight + ((index - middle) * fontHeight);
         ctx.fillText(line, defaultWidth, h);
         return null;
       });
@@ -66,8 +67,8 @@ class Preview extends Component {
         return prev
       }, []);
       offsets.map(([sign, offset], index) => {
-        const position = (offset * fontSize * lineHeight);
-        const e = sign ? -28 : 28;
+        const position = (offset * fontHeight);
+        const e = sign ? fontHeight / 2 * -1 : fontHeight / 2;
         const h = defaultHeight + position + e;
         ctx.fillText(lines[index], defaultWidth, h);
         return null;
