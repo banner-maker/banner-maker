@@ -15,6 +15,7 @@ class Preview extends Component {
       text,
       fontSize,
       fontFamily,
+      lineHeight,
       updateCanvas,
       href
     } = this.props;
@@ -28,6 +29,8 @@ class Preview extends Component {
       font: fontFamily
     });
 
+    this.drawText(canvas, text, fontSize, lineHeight);
+
     const url = canvas.toDataURL();
     href !== url && updateCanvas(url);
   }
@@ -39,9 +42,38 @@ class Preview extends Component {
     ctx.fillStyle = color;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
   };
 
+  drawText = (canvas, text, fontSize, lineHeight) => {
+    const ctx = canvas.getContext('2d');
+    const defaultWidth = canvas.width / 2;
+    const SEPARATOR = '\\n';
+    const lines = text.split(SEPARATOR);
+    const defaultHeight = canvas.height / 2;
+    const middle = parseInt(lines.length / 2);
+
+    if (lines.length % 2) {
+      lines.map((line, index) => {
+        const h = defaultHeight + ((index - middle) * fontSize * lineHeight);
+        ctx.fillText(line, defaultWidth, h);
+        return null;
+      });
+    } else {
+      const mid = (lines.length - 1) / 2;
+      const offsets = lines.map((line, index) => index).reduce((prev, curr) => {
+        const subtract = curr - mid;
+        prev.push([subtract < 0, parseInt(subtract)]);
+        return prev
+      }, []);
+      offsets.map(([sign, offset], index) => {
+        const position = (offset * fontSize * lineHeight);
+        const e = sign ? -28 : 28;
+        const h = defaultHeight + position + e;
+        ctx.fillText(lines[index], defaultWidth, h);
+        return null;
+      })
+    }
+  };
   render() {
     return (
       <>
