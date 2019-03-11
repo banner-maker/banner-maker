@@ -17,7 +17,8 @@ class App extends Component {
     fontFamily: "SF Pro",
     fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
     fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
-    fontSize: "40"
+    fontSize: "40",
+    lineHeight: 1.4,
   };
 
   componentDidMount() {
@@ -56,7 +57,8 @@ class App extends Component {
       fontSize,
       fontFamily,
       fontFamilyList,
-      fontSizeList
+      fontSizeList,
+      lineHeight,
     } = this.state;
     return (
       <div className="App">
@@ -68,6 +70,7 @@ class App extends Component {
             href={href}
             fontFamily={fontFamily}
             fontSize={fontSize}
+            lineHeight={lineHeight}
             updateCanvas={this.handleCanvasChange}
           />
           <Input onChange={this.handleTextChange} />
