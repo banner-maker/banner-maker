@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import SelectMenu from "../SelectMenu";
+import { Switch } from 'antd';
+import { COLOR_TYPE } from '../../common/Constant';
 
 class Editor extends Component {
+
+  handleColorModeChange = (checked) => {
+    const { handleColorType, colorType } = this.props;
+    handleColorType(colorType === COLOR_TYPE.BACKGROUND ? COLOR_TYPE.FONT: COLOR_TYPE.BACKGROUND);
+  };
+
   render() {
     const {
       fontFamilyList,
       fontSizeList,
       handleFontFamily,
-      handleFontSize
+      handleFontSize,
+      colorType
     } = this.props;
     return (
       <>
@@ -21,6 +30,12 @@ class Editor extends Component {
             typeLabel="font-size"
             selectList={fontSizeList}
             handleChange={handleFontSize}
+          />
+          <Switch 
+            checkedChildren="backgroundColor" 
+            unCheckedChildren="fontColor" 
+            checked={colorType === COLOR_TYPE.BACKGROUND}
+            onChange={this.handleColorModeChange}
           />
         </div>
       </>

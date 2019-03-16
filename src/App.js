@@ -7,11 +7,13 @@ import Input from "./components/Input";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Editor from "./components/Editor";
+import { COLOR_TYPE } from './common/Constant';
 
 class App extends Component {
   state = {
-    colorType: "background",
-    color: "#ccc",
+    colorType: COLOR_TYPE.BACKGROUND,
+    backgroundColor: "#ccc",
+    fontColor: "white",
     text: "Sample Text",
     href: "",
     fontFamily: "SF Pro",
@@ -22,11 +24,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ color: this.getRandomColor() });
+    this.setState({ 'backgroundColor': this.getRandomColor() });
   }
 
   handleChange = color => {
-    this.setState({ color: color.hex });
+    const { colorType } = this.state;
+    this.setState({ [`${colorType}Color`]: color.hex });
   };
 
   handleTextChange = e => {
@@ -40,6 +43,10 @@ class App extends Component {
     this.setState({ fontFamily });
   };
 
+  handleColorType = colorType => {
+    this.setState({ colorType });
+  };
+
   getRandomColor = () => {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
   };
@@ -51,7 +58,8 @@ class App extends Component {
   render() {
     const {
       colorType,
-      color,
+      backgroundColor,
+      fontColor,
       text,
       href,
       fontSize,
@@ -65,7 +73,8 @@ class App extends Component {
         <Header />
         <div className="content">
           <Preview
-            color={color}
+            backgroundColor={backgroundColor}
+            fontColor={fontColor}
             text={text}
             href={href}
             fontFamily={fontFamily}
@@ -73,17 +82,20 @@ class App extends Component {
             lineHeight={lineHeight}
             updateCanvas={this.handleCanvasChange}
           />
-          <Input onChange={this.handleTextChange} />
+          <Input 
+            color={fontColor}
+            onChange={this.handleTextChange} 
+          />
           <Editor
             colorType={colorType}
             fontFamilyList={fontFamilyList}
             fontSizeList={fontSizeList}
             handleFontSize={this.handleFontSize}
             handleFontFamily={this.handleFontFamily}
+            handleColorType={this.handleColorType}
           />
           <Palette
-            colorType={colorType}
-            color={color}
+            color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
           <a href={href} className="downbutton" download="banner-image.png">
