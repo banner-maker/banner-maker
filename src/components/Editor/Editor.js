@@ -32,8 +32,8 @@ class Editor extends Component {
             handleChange={handleFontSize}
           />
           <Switch 
-            checkedChildren={<Icon type="check"/>} 
-            unCheckedChildren={<Icon type="close"/>}
+            checkedChildren={<Icon type="bg-colors"/>} 
+            unCheckedChildren={<Icon type="font-colors"/>}
             checked={colorType === COLOR_TYPE.BACKGROUND}
             onChange={this.handleColorModeChange}
           />
