@@ -11,7 +11,8 @@ class Preview extends Component {
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext("2d");
     const {
-      color,
+      backgroundColor,
+      fontColor,
       text,
       fontSize,
       fontFamily,
@@ -20,11 +21,11 @@ class Preview extends Component {
       href
     } = this.props;
 
-    ctx.fillStyle = color;
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     this.setFont(canvas, text, {
-      color: "white",
+      color: fontColor,
       size: fontSize,
       font: fontFamily
     });
