@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SelectMenu from "../SelectMenu";
-import { Switch } from 'antd';
+import { Icon, Switch } from 'antd';
 import { COLOR_TYPE } from '../../common/Constant';
 
 class Editor extends Component {
@@ -32,8 +32,8 @@ class Editor extends Component {
             handleChange={handleFontSize}
           />
           <Switch 
-            checkedChildren="backgroundColor" 
-            unCheckedChildren="fontColor" 
+            checkedChildren={<Icon type="bg-colors"/>} 
+            unCheckedChildren={<Icon type="font-colors"/>}
             checked={colorType === COLOR_TYPE.BACKGROUND}
             onChange={this.handleColorModeChange}
           />
