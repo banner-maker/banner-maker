@@ -77,13 +77,14 @@ class Preview extends Component {
     }
   };
   render() {
+    const { width, height } = this.props;
     return (
       <>
         <canvas
           ref={this.canvasRef}
           className="previewCanvas"
-          width="700"
-          height="350"
+          width={width}
+          height={height}
         />
       </>
     );
