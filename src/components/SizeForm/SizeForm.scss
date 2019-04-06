@@ -1,0 +1,6 @@
+.SizeForm {
+  display: flex;
+  &__input:first-child {
+    margin-right: 5px;
+  }
+}
