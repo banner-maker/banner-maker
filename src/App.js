@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import "./styles/App.scss";
 import "antd/dist/antd.css";
+import SizeForm from "./components/SizeForm";
 import Palette from "./components/Palette";
 import Preview from "./components/Preview";
 import Input from "./components/Input";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Editor from "./components/Editor";
-import { COLOR_TYPE } from './common/Constant';
+import { COLOR_TYPE } from "./common/Constant";
 
 class App extends Component {
   state = {
     colorType: COLOR_TYPE.BACKGROUND,
+    width: "700",
+    height: "300",
     backgroundColor: "#ccc",
     fontColor: "white",
     text: "Sample Text",
@@ -20,11 +23,11 @@ class App extends Component {
     fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
     fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
     fontSize: "40",
-    lineHeight: 1.4,
+    lineHeight: 1.4
   };
 
   componentDidMount() {
-    this.setState({ 'backgroundColor': this.getRandomColor() });
+    this.setState({ backgroundColor: this.getRandomColor() });
   }
 
   handleChange = color => {
@@ -32,9 +35,10 @@ class App extends Component {
     this.setState({ [`${colorType}Color`]: color.hex });
   };
 
-  handleTextChange = e => {
-    this.setState({ text: e.target.value });
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
+
   handleFontSize = fontSize => {
     this.setState({ fontSize });
   };
@@ -67,25 +71,31 @@ class App extends Component {
       fontFamilyList,
       fontSizeList,
       lineHeight,
+      width,
+      height
     } = this.state;
     return (
       <div className="App">
         <Header />
         <div className="content">
+          <SizeForm
+            width={width}
+            height={height}
+            onInputChange={this.handleInputChange}
+          />
           <Preview
             backgroundColor={backgroundColor}
             fontColor={fontColor}
             text={text}
             href={href}
+            width={width}
+            height={height}
             fontFamily={fontFamily}
             fontSize={fontSize}
             lineHeight={lineHeight}
             updateCanvas={this.handleCanvasChange}
           />
-          <Input 
-            color={fontColor}
-            onChange={this.handleTextChange} 
-          />
+          <Input color={fontColor} onChange={this.handleInputChange} />
           <Editor
             colorType={colorType}
             fontFamilyList={fontFamilyList}
