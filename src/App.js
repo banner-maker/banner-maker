@@ -14,7 +14,7 @@ class App extends Component {
   state = {
     colorType: COLOR_TYPE.BACKGROUND,
     width: "700",
-    height: "300",
+    height: "350",
     backgroundColor: "#ccc",
     fontColor: "white",
     text: "Sample Text",
