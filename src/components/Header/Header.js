@@ -20,7 +20,9 @@ class Header extends Component {
           </script>
         </Helmet>
         <div className="header">
-          <div className="headerTitle">[ Banner Maker ]</div>
+          <div className="headerTitle" onClick={() => window.location.reload()}>
+            [ Banner Maker ]
+          </div>
         </div>
       </>
     );

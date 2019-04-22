@@ -6,7 +6,6 @@ import Palette from "./components/Palette";
 import Preview from "./components/Preview";
 import Input from "./components/Input";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 
@@ -112,7 +111,6 @@ class App extends Component {
             Download
           </a>
         </div>
-        <Footer project="banner-maker" />
       </div>
     );
   }
