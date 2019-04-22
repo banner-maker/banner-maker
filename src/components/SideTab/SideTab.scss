@@ -1,0 +1,11 @@
+.sidetab {
+  position: fixed;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #393f4c;
+  width: 50px;
+  height: 100%;
+}

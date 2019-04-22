@@ -8,6 +8,7 @@ import Input from "./components/Input";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
+import SideTab from "./components/SideTab/SideTab";
 
 class App extends Component {
   state = {
@@ -76,6 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <SideTab />
         <div className="content">
           <SizeForm
             width={width}
