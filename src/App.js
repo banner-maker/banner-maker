@@ -64,7 +64,6 @@ class App extends Component {
       colorType,
       backgroundColor,
       fontColor,
-      text,
       href,
       fontSize,
       fontFamily,
@@ -74,6 +73,7 @@ class App extends Component {
       width,
       height
     } = this.state;
+    const renderedText = require("markdown-it")().use(require("markdown-it-emoji")).renderInline(this.state.text);
     return (
       <div className="App">
         <Header />
@@ -87,7 +87,7 @@ class App extends Component {
           <Preview
             backgroundColor={backgroundColor}
             fontColor={fontColor}
-            text={text}
+            text={renderedText}
             href={href}
             width={width}
             height={height}
