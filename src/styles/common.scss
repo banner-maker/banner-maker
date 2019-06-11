@@ -1,0 +1,5 @@
+$primaryColor: salmon;
+
+@function shade($color) {
+  @return mix(black, $color, 30%);
+}

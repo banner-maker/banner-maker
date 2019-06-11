@@ -1,4 +1,4 @@
-$primaryColor: salmon;
+@import "common.scss";
 
 @font-face {
   font-family: "SF Pro";
@@ -16,10 +16,6 @@ $primaryColor: salmon;
   font-family: "SF Pro";
   font-weight: 300;
   src: url("fonts/SF-Pro-Display-Medium.otf");
-}
-
-@function shade($color) {
-  @return mix(black, $color, 30%);
 }
 
 html,

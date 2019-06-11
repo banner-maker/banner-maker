@@ -1,9 +1,10 @@
+@import "../../styles/common.scss";
+
 .header {
   position: fixed;
   top: 10px;
   right: 15px;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: stretch;
 }
@@ -13,4 +14,7 @@
   margin: 20px;
   color: white;
   cursor: pointer;
+  &:hover {
+    color: $primaryColor;
+  }
 }
