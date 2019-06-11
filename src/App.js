@@ -78,7 +78,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <SideTab />
         <div className="content">
           <SizeForm
             width={width}
@@ -116,6 +115,7 @@ class App extends Component {
               Download
             </Button>
           </a>
+          <SideTab />
         </div>
       </div>
     );
