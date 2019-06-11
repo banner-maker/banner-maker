@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "antd";
 import "./styles/App.scss";
 import "antd/dist/antd.css";
 import SizeForm from "./components/SizeForm";
@@ -109,8 +110,11 @@ class App extends Component {
             color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
-          <a href={href} className="downbutton" download="banner-image.png">
-            Download
+
+          <a href={href} download="banner-image.png">
+            <Button type="primary" icon="download" size="large">
+              Download
+            </Button>
           </a>
         </div>
       </div>
