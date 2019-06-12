@@ -22,7 +22,7 @@ class Header extends Component {
           />
           <meta
             property="og:image"
-            content="https://github.com/godori/banner-maker/blob/master/public/banner-maker.png?raw=true"
+            content="https://raw.githubusercontent.com/godori/banner-maker/master/public/banner-maker.png"
           />
           <title>Banner Maker</title>
           <script
