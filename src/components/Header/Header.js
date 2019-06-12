@@ -8,6 +8,22 @@ class Header extends Component {
       <>
         <Helmet>
           <meta charSet="utf-8" />
+          <meta property="og:site_name" content="Banner Maker" />
+          <meta property="og:url" content="https://banner.godori.dev" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Banner Maker" />
+          <meta
+            name="keywords"
+            content="Banner,배너,Editor,Image,Banner Download,Banner Generator,Color Text"
+          />
+          <meta
+            property="og:description"
+            content="Create a simple banner and download it!"
+          />
+          <meta
+            property="og:image"
+            content="https://github.com/godori/banner-maker/blob/master/public/banner-maker.png?raw=true"
+          />
           <title>Banner Maker</title>
           <script
             async
