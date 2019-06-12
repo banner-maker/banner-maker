@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 import SideTab from "./components/SideTab/SideTab";
+import ReactGA from "react-ga";
+ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
   state = {
@@ -58,6 +60,15 @@ class App extends Component {
 
   handleCanvasChange = href => {
     this.setState({ href });
+  };
+
+  sendLog = () => {
+    const { text } = this.state;
+    ReactGA.event({
+      category: "DOWNLOAD",
+      action: "Click",
+      label: text
+    });
   };
 
   render() {
@@ -111,7 +122,11 @@ class App extends Component {
           />
 
           <a href={href} download="banner-image.png">
-            <Button type="primary" icon="download" size="large">
+            <Button
+              type="primary"
+              icon="download"
+              size="large"
+              onClick={() => this.sendLog()}>
               Download
             </Button>
           </a>
