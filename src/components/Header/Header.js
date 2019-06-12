@@ -8,6 +8,7 @@ class Header extends Component {
       <>
         <Helmet>
           <meta charSet="utf-8" />
+          <meta property="fb:app_id" content="1572330226230304" />
           <meta property="og:site_name" content="Banner Maker" />
           <meta property="og:url" content="https://banner.godori.dev" />
           <meta property="og:type" content="website" />
