@@ -11,6 +11,7 @@ import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 import SideTab from "./components/SideTab/SideTab";
 import ReactGA from "react-ga";
+import BgImageSelectModal from "./components/BgImageSelectModal/BgImageSelectModal";
 ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
@@ -26,7 +27,8 @@ class App extends Component {
     fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
     fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
     fontSize: "40",
-    lineHeight: 1.4
+    lineHeight: 1.4,
+    bgModalOpen: true
   };
 
   componentDidMount() {
@@ -131,6 +133,7 @@ class App extends Component {
             </Button>
           </a>
           <SideTab />
+          <BgImageSelectModal open={this.state.bgModalOpen}/>
         </div>
       </div>
     );
