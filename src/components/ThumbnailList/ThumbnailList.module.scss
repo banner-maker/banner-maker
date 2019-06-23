@@ -1,0 +1,14 @@
+.thumbnail__item  {
+  height: 150px;
+  img {
+    max-height: 120px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    border: 5px solid #ffffff;
+    cursor: pointer;
+    &.active {
+      border: 5px solid #5a6dff;
+    }
+  }
+}
