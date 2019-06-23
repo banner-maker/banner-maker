@@ -1,0 +1,8 @@
+.searchForm {
+  display: flex;
+  padding-bottom: 10px;
+  .searchForm__query {
+    flex: 2;
+    margin-right: 10px;
+  }
+}
