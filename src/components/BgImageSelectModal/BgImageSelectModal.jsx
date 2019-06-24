@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, Tabs } from 'antd/lib/index';
+import { Modal, Tabs, Upload, Icon, message } from 'antd/lib/index';
 import UnsplashContainer from "containers/UnsplashContainer";
 
 const { TabPane } = Tabs;
+const { Dragger } = Upload;
 
 const BgImageSelectModal = ({ open, handleSelect, handleCancel }) => {
 
@@ -19,7 +20,16 @@ const BgImageSelectModal = ({ open, handleSelect, handleCancel }) => {
           <UnsplashContainer />
         </TabPane>
         <TabPane tab="Upload" key="upload">
-          준비중입니다.
+          <Dragger >
+            <p className="ant-upload-drag-icon">
+              <Icon type="inbox" />
+            </p>
+            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+            <p className="ant-upload-hint">
+              Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+              band files
+            </p>
+          </Dragger>
         </TabPane>
       </Tabs>
     </Modal>
