@@ -11,7 +11,7 @@ import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 import SideTab from "./components/SideTab/SideTab";
 import ReactGA from "react-ga";
-import BgImageSelectModal from "./components/BgImageSelectModal/BgImageSelectModal";
+import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
 ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
