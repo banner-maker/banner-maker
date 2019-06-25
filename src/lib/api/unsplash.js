@@ -1,7 +1,6 @@
 import axios from 'axios';
 import objectToQueryString from "lib/objectToQueryString";
 
-console.log(process.env.UNSPLASH_ACCESS_KEY);
 const instance = axios.create({
   baseURL: 'https://api.unsplash.com',
   headers: {
