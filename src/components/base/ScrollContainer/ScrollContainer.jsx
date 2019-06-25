@@ -1,13 +1,26 @@
 import React from 'react';
 
-const ScrollContainer = ({ height, children }) => (
-  <div style={{
+const ScrollContainer = ({ height, vertical, horizontal, children, forwardedRef }) => (
+  <div
+    ref={forwardedRef}
+    style={{
     height,
-    overflowY: 'scroll'
+    overflowY: vertical ? 'scroll': 'hidden',
+    overflowX: horizontal ? 'scroll': 'hidden'
   }} >
     {children}
   </div>
 );
 
-export default ScrollContainer;
+ScrollContainer.defaultProps = {
+  height: 300,
+  vertical: false,
+  horizontal: false
+};
+
+export default React.forwardRef(((props, ref) => {
+  return (
+    <ScrollContainer {...props} forwardedRef={ref}/>
+  )
+}));
 
