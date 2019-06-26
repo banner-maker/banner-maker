@@ -19,6 +19,8 @@ class App extends Component {
     colorType: COLOR_TYPE.BACKGROUND,
     width: "700",
     height: "350",
+    backgroundType: "image",
+    backgroundImage: 'https://images.unsplash.com/photo-1503431128871-cd250803fa41?auto=format&fit=crop&w=1600&h=500&q=60',
     backgroundColor: "#ccc",
     fontColor: "white",
     text: "Sample Text",
@@ -28,7 +30,7 @@ class App extends Component {
     fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
     fontSize: "40",
     lineHeight: 1.4,
-    bgModalOpen: true
+    bgModalOpen: false
   };
 
   componentDidMount() {
@@ -64,6 +66,10 @@ class App extends Component {
     this.setState({ href });
   };
 
+  handleBgModal = (open) => () => {
+    this.setState({ bgModalOpen: open});
+  };
+
   sendLog = () => {
     const { text } = this.state;
     ReactGA.event({
@@ -76,7 +82,9 @@ class App extends Component {
   render() {
     const {
       colorType,
+      backgroundType,
       backgroundColor,
+      backgroundImage,
       fontColor,
       text,
       href,
@@ -98,7 +106,9 @@ class App extends Component {
             onInputChange={this.handleInputChange}
           />
           <Preview
+            backgroundType={backgroundType}
             backgroundColor={backgroundColor}
+            backgroundImage={backgroundImage}
             fontColor={fontColor}
             text={text}
             href={href}
@@ -122,7 +132,16 @@ class App extends Component {
             color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
-
+          <Button
+            type="primary"
+            icon="file-image"
+            onClick={this.handleBgModal(true)}
+            style={{
+              marginBottom: 10
+            }}
+          >
+            Background Image
+          </Button>
           <a href={href} download="banner-image.png">
             <Button
               type="primary"
@@ -133,7 +152,10 @@ class App extends Component {
             </Button>
           </a>
           <SideTab />
-          <BgImageSelectModal open={this.state.bgModalOpen}/>
+          <BgImageSelectModal
+            open={this.state.bgModalOpen}
+            onCancel={this.handleBgModal(false)}
+          />
         </div>
       </div>
     );
