@@ -4,7 +4,7 @@ import * as UnsplashAPI from 'lib/api/unsplash';
 import SearchForm from "components/unsplash/SearchForm/SearchForm";
 import ScrollContainer from "components/base/ScrollContainer";
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
-import { Icon }from 'antd';
+import Loading from 'components/base/Loading';
 
 const convertData = (record) => ({
   id: record.id,
@@ -18,6 +18,7 @@ const PER_PAGE = 30;
 const UnsplashContainer = () => {
   const currentQuery = useRef('');
   const currentPage = useRef(1);
+  const totalPage = useRef(0);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -45,6 +46,7 @@ const UnsplashContainer = () => {
     try {
       setLoading(true);
       const { data } = await UnsplashAPI.searchPhotos({ query, page, per_page: PER_PAGE});
+      totalPage.current = data.total_pages;
       return data;
     } catch(e) {
       setError(e);
@@ -79,7 +81,11 @@ const UnsplashContainer = () => {
     root: rootRef.current,
     target: targetRef.current,
     onIntersect: ([{isIntersecting}]) => {
-      if(isIntersecting && !!currentQuery.current) {
+      if(
+        isIntersecting &&
+        !!currentQuery.current &&
+        currentPage.current < totalPage.current
+      ) {
         loadMoreImage();
       }
     }
@@ -96,17 +102,17 @@ const UnsplashContainer = () => {
         onSearch={searchImage}
         onRandom={loadRandomImage}
       />
-      <ScrollContainer height={400} vertical ref={rootRef}>
+      <ScrollContainer
+        height={400}
+        vertical
+        ref={rootRef}
+      >
         <ThumbnailList
           onClick={thumbnail => setSelected(thumbnail.id)}
           selected={selected}
           thumbnails={images}
         />
-        {
-          loading && (
-            <Icon type="loading" />
-          )
-        }
+        <Loading show={loading}/>
         <div ref={targetRef} />
       </ScrollContainer>
     </div>
