@@ -19,8 +19,8 @@ class App extends Component {
     colorType: COLOR_TYPE.BACKGROUND,
     width: "700",
     height: "350",
-    backgroundType: "image",
-    backgroundImage: 'https://images.unsplash.com/photo-1503431128871-cd250803fa41?auto=format&fit=crop&w=1600&h=500&q=60',
+    backgroundType: "color",
+    backgroundImage: null,
     backgroundColor: "#ccc",
     fontColor: "white",
     text: "Sample Text",
@@ -34,12 +34,19 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ backgroundColor: this.getRandomColor() });
+    this.setState({
+      backgroundColor: this.getRandomColor(),
+      backgroundType: 'color'
+    });
   }
 
   handleChange = color => {
     const { colorType } = this.state;
-    this.setState({ [`${colorType}Color`]: color.hex });
+
+    this.setState({
+      [`${colorType}Color`]: color.hex,
+      backgroundType: 'color'
+    });
   };
 
   handleInputChange = e => {
@@ -68,6 +75,14 @@ class App extends Component {
 
   handleBgModal = (open) => () => {
     this.setState({ bgModalOpen: open});
+  };
+
+  setBackgroundImage = (blob) => {
+    this.setState({
+      backgroundType: 'image',
+      backgroundImage: blob,
+      bgModalOpen: false
+    });
   };
 
   sendLog = () => {
@@ -154,7 +169,8 @@ class App extends Component {
           <SideTab />
           <BgImageSelectModal
             open={this.state.bgModalOpen}
-            onCancel={this.handleBgModal(false)}
+            close={this.handleBgModal(false)}
+            setImage={this.setBackgroundImage}
           />
         </div>
       </div>
