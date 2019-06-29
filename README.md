@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="https://editorjs.io/">
+    <a href="https://banner.godori.dev/">
         <h3>🎨</h3>
         <h1>Banner Maker</h1>
     </a>
@@ -7,7 +7,11 @@
 </div>
 
 ## Demo
-[here](https://banner.godori.dev)
+<div align="center">
+    <a href="https://banner.godori.dev/">
+        <h3>https://banner.godori.dev</h3>
+    </a>
+</div>
 
 ![banner-maker.gif](https://images.velog.io/post-images/godori/1e34dda0-3dca-11e9-9d6c-bf6354f57566/banner-maker.gif)
 
