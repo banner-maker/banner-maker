@@ -1,6 +1,7 @@
 <div align="center">
     <a href="https://editorjs.io/">
-        <h1>🎨 Banner Maker</h1>
+        <h3>🎨</h3>
+        <h1>Banner Maker</h1>
     </a>
   Create a simple banner and download it!
 </div>
