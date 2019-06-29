@@ -9,9 +9,11 @@ const instance = axios.create({
 });
 
 export const getRandomPhotos = (params) =>
-  instance.get(`/photos/random?${objectToQueryString(params)}`);
+  instance.get(`/photos/random?${objectToQueryString(params)}`)
+    .then(res => res.data);
 
 
 export const searchPhotos = (params) =>
-  instance.get(`/search/photos?${objectToQueryString(params)}`);
+  instance.get(`/search/photos?${objectToQueryString(params)}`)
+    .then(res => res.data);
 
