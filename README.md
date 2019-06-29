@@ -3,15 +3,14 @@
         <h3>🎨</h3>
         <h1>Banner Maker</h1>
     </a>
-  Create a simple banner and download it!
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/568aa65d-c4d7-4e42-a52d-dbb627f248b0/deploy-status)](https://app.netlify.com/sites/trusting-almeida-eda9e3/deploys)
+
+Create a simple banner and download it!
+
+[demo](https://banner.godori.dev)
 </div>
 
-## Demo
-<div align="center">
-    <a href="https://banner.godori.dev/">
-        <h3>https://banner.godori.dev</h3>
-    </a>
-</div>
 
 ![banner-maker.gif](https://images.velog.io/post-images/godori/1e34dda0-3dca-11e9-9d6c-bf6354f57566/banner-maker.gif)
 
