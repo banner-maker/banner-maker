@@ -11,6 +11,7 @@ import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 import SideTab from "./components/SideTab/SideTab";
 import ReactGA from "react-ga";
+import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
 ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
@@ -18,6 +19,8 @@ class App extends Component {
     colorType: COLOR_TYPE.BACKGROUND,
     width: "700",
     height: "350",
+    backgroundType: "color",
+    backgroundImage: null,
     backgroundColor: "#ccc",
     fontColor: "white",
     text: "Sample Text",
@@ -26,16 +29,24 @@ class App extends Component {
     fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
     fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
     fontSize: "40",
-    lineHeight: 1.4
+    lineHeight: 1.4,
+    bgModalOpen: false
   };
 
   componentDidMount() {
-    this.setState({ backgroundColor: this.getRandomColor() });
+    this.setState({
+      backgroundColor: this.getRandomColor(),
+      backgroundType: 'color'
+    });
   }
 
   handleChange = color => {
     const { colorType } = this.state;
-    this.setState({ [`${colorType}Color`]: color.hex });
+
+    this.setState({
+      [`${colorType}Color`]: color.hex,
+      backgroundType: 'color'
+    });
   };
 
   handleInputChange = e => {
@@ -62,6 +73,18 @@ class App extends Component {
     this.setState({ href });
   };
 
+  handleBgModal = (open) => () => {
+    this.setState({ bgModalOpen: open});
+  };
+
+  setBackgroundImage = (blob) => {
+    this.setState({
+      backgroundType: 'image',
+      backgroundImage: blob,
+      bgModalOpen: false
+    });
+  };
+
   sendLog = () => {
     const { text } = this.state;
     ReactGA.event({
@@ -74,7 +97,9 @@ class App extends Component {
   render() {
     const {
       colorType,
+      backgroundType,
       backgroundColor,
+      backgroundImage,
       fontColor,
       text,
       href,
@@ -96,7 +121,9 @@ class App extends Component {
             onInputChange={this.handleInputChange}
           />
           <Preview
+            backgroundType={backgroundType}
             backgroundColor={backgroundColor}
+            backgroundImage={backgroundImage}
             fontColor={fontColor}
             text={text}
             href={href}
@@ -120,7 +147,16 @@ class App extends Component {
             color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
-
+          <Button
+            type="primary"
+            icon="file-image"
+            onClick={this.handleBgModal(true)}
+            style={{
+              marginBottom: 10
+            }}
+          >
+            Background Image
+          </Button>
           <a href={href} download="banner-image.png">
             <Button
               type="primary"
@@ -131,6 +167,11 @@ class App extends Component {
             </Button>
           </a>
           <SideTab />
+          <BgImageSelectModal
+            open={this.state.bgModalOpen}
+            close={this.handleBgModal(false)}
+            setImage={this.setBackgroundImage}
+          />
         </div>
       </div>
     );
