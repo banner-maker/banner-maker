@@ -12,6 +12,7 @@
 ![banner-maker.gif](https://images.velog.io/post-images/godori/1e34dda0-3dca-11e9-9d6c-bf6354f57566/banner-maker.gif)
 
 ## Features
+- Unsplash background image
 - Type a text into the canvas and download PNG image.
 - Color picker for text and background
 - Available but limited:
