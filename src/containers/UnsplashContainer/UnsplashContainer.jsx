@@ -1,21 +1,15 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ThumbnailList from 'components/unsplash/ThumbnailList';
 import * as UnsplashAPI from 'lib/api/unsplash';
+import { downloadPhoto } from 'lib/downloadPhoto';
 import SearchForm from "components/unsplash/SearchForm/SearchForm";
 import ScrollContainer from "components/base/ScrollContainer";
 import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import Loading from 'components/base/Loading';
 
-const convertData = (record) => ({
-  id: record.id,
-  title: record.alt_description,
-  url: record.urls.thumb,
-  author: record.user.username
- });
-
 const PER_PAGE = 30;
 
-const UnsplashContainer = () => {
+const UnsplashContainer = ({ setPhoto }) => {
   const currentQuery = useRef('');
   const currentPage = useRef(1);
   const totalPage = useRef(0);
@@ -32,9 +26,9 @@ const UnsplashContainer = () => {
   const loadRandomImage = useCallback(async () => {
     try {
       setLoading(true);
-      const { data } = await UnsplashAPI.getRandomPhotos({ count: 30 });
+      const data = await UnsplashAPI.getRandomPhotos({ count: 30 });
       currentQuery.current = '';
-      setImages(data.map(convertData));
+      setImages(data);
     } catch(e) {
       setError(e);
     } finally {
@@ -45,7 +39,7 @@ const UnsplashContainer = () => {
   const loadImage = useCallback(async ({ query, page }) => {
     try {
       setLoading(true);
-      const { data } = await UnsplashAPI.searchPhotos({ query, page, per_page: PER_PAGE});
+      const data = await UnsplashAPI.searchPhotos({ query, page, per_page: PER_PAGE});
       totalPage.current = data.total_pages;
       return data;
     } catch(e) {
@@ -63,7 +57,7 @@ const UnsplashContainer = () => {
     currentQuery.current = query;
     currentPage.current = 1;
     const data = await loadImage({ query, page: 1, per_page: PER_PAGE });
-    setImages(data.results.map(convertData));
+    setImages(data.results);
   }, [loadImage, loadRandomImage]);
 
   const loadMoreImage = useCallback(async () => {
@@ -73,9 +67,22 @@ const UnsplashContainer = () => {
         query: currentQuery.current,
         page: currentPage.current
       });
-      setImages([...images, ...data.results.map(convertData)])
+      setImages([...images, ...data.results])
     }
   },[images, loadImage]);
+
+  const downloadImage = useCallback(async (photo) => {
+    try {
+      setLoading(true);
+      const blob = await downloadPhoto(photo.urls.regular);
+      setPhoto(blob);
+      setSelected(photo.id);
+    } catch(e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
+  }, [setPhoto, setSelected]);
 
   useIntersectionObserver({
     root: rootRef.current,
@@ -108,7 +115,7 @@ const UnsplashContainer = () => {
         ref={rootRef}
       >
         <ThumbnailList
-          onClick={thumbnail => setSelected(thumbnail.id)}
+          onClick={downloadImage}
           selected={selected}
           thumbnails={images}
         />
