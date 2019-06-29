@@ -10,12 +10,12 @@ const ThumbnailList = ({ thumbnails, selected, onClick }) => (
         <Col span={6} key={thumbnail.id}>
           <div className={styles['thumbnail__item']}>
             <img
-              src={thumbnail.url}
-              alt={thumbnail.title}
+              src={thumbnail.urls.thumb}
+              alt={thumbnail.alt_description}
               className={CX({[styles.active]: thumbnail.id === selected})}
               onClick={() => onClick(thumbnail)}
             />
-            <span >By {thumbnail.author}</span>
+            <span >By {thumbnail.user.username}</span>
           </div>
         </Col>
       ))

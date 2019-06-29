@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Modal, Tabs, Upload, Icon } from 'antd/lib/index';
 import UnsplashContainer from "containers/UnsplashContainer";
 
 const { TabPane } = Tabs;
 const { Dragger } = Upload;
 
-const BgImageSelectModal = ({ open, onSelect, onCancel }) => {
+const BgImageSelectModal = ({ open, setImage, close }) => {
+  const selectedPhoto = useRef(null);
+
+  const setPhoto = (blob) => {
+    selectedPhoto.current = blob;
+  };
+
+  const onOk = () => {
+    setImage(selectedPhoto.current);
+  };
+
   return (
     <Modal
       title="Select Background Image"
       visible={open}
-      onOk={onSelect}
-      onCancel={onCancel}
+      onOk={onOk}
+      onCancel={close}
       width={800}
     >
       <Tabs defaultActiveKey="unsplash">
         <TabPane tab="Unsplash" key="unsplash" >
-          <UnsplashContainer />
+          <UnsplashContainer setPhoto={setPhoto} />
         </TabPane>
         <TabPane tab="Upload" key="upload">
           <Dragger >
