@@ -5,7 +5,6 @@ import {
   EditableInput,
   Hue
 } from "react-color/lib/components/common";
-import MyPointer from "./MyPointer";
 import Swatches from "./Swatches";
 
 export const MyColorPicker = ({
@@ -108,7 +107,6 @@ export const MyColorPicker = ({
           hex={hex}
           hsl={hsl}
           hsv={hsv}
-          pointer={MyPointer}
           onChange={onChange}
           onChangeComplete={onChange}
         />
