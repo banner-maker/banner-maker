@@ -11,31 +11,44 @@ import Editor from "./components/Editor";
 import { COLOR_TYPE } from "./common/Constant";
 import SideTab from "./components/SideTab/SideTab";
 import ReactGA from "react-ga";
+import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
 ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
-  state = {
-    colorType: COLOR_TYPE.BACKGROUND,
-    width: "700",
-    height: "350",
-    backgroundColor: "#ccc",
-    fontColor: "white",
-    text: "Sample Text",
-    href: "",
-    fontFamily: "SF Pro",
-    fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
-    fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
-    fontSize: "40",
-    lineHeight: 1.4
-  };
-
-  componentDidMount() {
-    this.setState({ backgroundColor: this.getRandomColor() });
+  constructor(props) {
+    super(props);
+    const initColor = this.getRandomColor();
+    this.state = {
+      color: {
+        hex: initColor
+      },
+      colorType: COLOR_TYPE.BACKGROUND,
+      width: "700",
+      height: "350",
+      backgroundType: "color",
+      backgroundImage: null,
+      backgroundColor: initColor,
+      fontColor: "white",
+      text: "Sample Text",
+      href: "",
+      fontFamily: "SF Pro",
+      fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
+      fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
+      fontSize: "40",
+      lineHeight: 1.4,
+      bgModalOpen: false
+    };
   }
 
-  handleChange = color => {
+  handleChange = data => {
+    if (data.hsl !== this.state.color) {
+      this.setState({ color: data });
+    }
     const { colorType } = this.state;
-    this.setState({ [`${colorType}Color`]: color.hex });
+    this.setState({
+      [`${colorType}Color`]: data.hex,
+      backgroundType: "color"
+    });
   };
 
   handleInputChange = e => {
@@ -55,11 +68,23 @@ class App extends Component {
   };
 
   getRandomColor = () => {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    return "#" + `0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6);
   };
 
   handleCanvasChange = href => {
     this.setState({ href });
+  };
+
+  handleBgModal = open => () => {
+    this.setState({ bgModalOpen: open });
+  };
+
+  setBackgroundImage = blob => {
+    this.setState({
+      backgroundType: "image",
+      backgroundImage: blob,
+      bgModalOpen: false
+    });
   };
 
   sendLog = () => {
@@ -73,8 +98,11 @@ class App extends Component {
 
   render() {
     const {
+      color,
       colorType,
+      backgroundType,
       backgroundColor,
+      backgroundImage,
       fontColor,
       text,
       href,
@@ -96,7 +124,9 @@ class App extends Component {
             onInputChange={this.handleInputChange}
           />
           <Preview
+            backgroundType={backgroundType}
             backgroundColor={backgroundColor}
+            backgroundImage={backgroundImage}
             fontColor={fontColor}
             text={text}
             href={href}
@@ -117,10 +147,19 @@ class App extends Component {
             handleColorType={this.handleColorType}
           />
           <Palette
-            color={this.state[`${colorType}Color`]}
+            color={this.state.color}
+            // color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
-
+          {/* <Button
+            type="primary"
+            icon="file-image"
+            onClick={this.handleBgModal(true)}
+            style={{
+              marginBottom: 10
+            }}>
+            Background Image
+          </Button> */}
           <a href={href} download="banner-image.png">
             <Button
               type="primary"
@@ -131,6 +170,11 @@ class App extends Component {
             </Button>
           </a>
           <SideTab />
+          <BgImageSelectModal
+            open={this.state.bgModalOpen}
+            close={this.handleBgModal(false)}
+            setImage={this.setBackgroundImage}
+          />
         </div>
       </div>
     );
