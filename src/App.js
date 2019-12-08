@@ -68,7 +68,7 @@ class App extends Component {
   };
 
   getRandomColor = () => {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    return "#" + `0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6);
   };
 
   handleCanvasChange = href => {
