@@ -9,9 +9,9 @@ class SideTab extends Component {
     curMenu: { iconType: "", label: "" },
     isActive: false,
     menus: [
-      { iconType: "notification", label: "notice" },
-      { iconType: "drag", label: "canvas" },
-      { iconType: "picture", label: "image" }
+      // { iconType: "notification", label: "notice" },
+      // { iconType: "drag", label: "canvas" },
+      // { iconType: "picture", label: "image" }
     ]
   };
 

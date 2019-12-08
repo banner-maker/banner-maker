@@ -40,6 +40,7 @@ body {
 .content {
   flex-grow: 1;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -72,17 +73,6 @@ input:focus::-webkit-input-placeholder {
   color: #fff;
 }
 
-.sampleRect {
-  width: 30px;
-  height: 30px;
-  background-color: beige;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.2);
-    transition: transform 100ms ease 0s;
-  }
-}
-
 .downbutton {
   width: 200px;
   height: 50px;
@@ -105,6 +95,7 @@ input:focus::-webkit-input-placeholder {
 }
 
 .paletteWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
