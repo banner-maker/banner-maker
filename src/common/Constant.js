@@ -1,4 +1,4 @@
-export const COLOR_TYPE = {
+export const PICKER_TYPE = {
   BACKGROUND: "background",
-  FONT: "font"
+  TEXT: "text"
 };
