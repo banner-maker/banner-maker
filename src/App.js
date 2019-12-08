@@ -15,37 +15,39 @@ import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSel
 ReactGA.initialize("UA-80202920-2");
 
 class App extends Component {
-  state = {
-    colorType: COLOR_TYPE.BACKGROUND,
-    width: "700",
-    height: "350",
-    backgroundType: "color",
-    backgroundImage: null,
-    backgroundColor: "#ccc",
-    fontColor: "white",
-    text: "Sample Text",
-    href: "",
-    fontFamily: "SF Pro",
-    fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
-    fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
-    fontSize: "40",
-    lineHeight: 1.4,
-    bgModalOpen: false
-  };
-
-  componentDidMount() {
-    this.setState({
-      backgroundColor: this.getRandomColor(),
-      backgroundType: 'color'
-    });
+  constructor(props) {
+    super(props);
+    const initColor = this.getRandomColor();
+    this.state = {
+      color: {
+        hex: initColor
+      },
+      colorType: COLOR_TYPE.BACKGROUND,
+      width: "700",
+      height: "350",
+      backgroundType: "color",
+      backgroundImage: null,
+      backgroundColor: initColor,
+      fontColor: "white",
+      text: "Sample Text",
+      href: "",
+      fontFamily: "SF Pro",
+      fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
+      fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
+      fontSize: "40",
+      lineHeight: 1.4,
+      bgModalOpen: false
+    };
   }
 
-  handleChange = color => {
+  handleChange = data => {
+    if (data.hsl !== this.state.color) {
+      this.setState({ color: data });
+    }
     const { colorType } = this.state;
-
     this.setState({
-      [`${colorType}Color`]: color.hex,
-      backgroundType: 'color'
+      [`${colorType}Color`]: data.hex,
+      backgroundType: "color"
     });
   };
 
@@ -73,13 +75,13 @@ class App extends Component {
     this.setState({ href });
   };
 
-  handleBgModal = (open) => () => {
-    this.setState({ bgModalOpen: open});
+  handleBgModal = open => () => {
+    this.setState({ bgModalOpen: open });
   };
 
-  setBackgroundImage = (blob) => {
+  setBackgroundImage = blob => {
     this.setState({
-      backgroundType: 'image',
+      backgroundType: "image",
       backgroundImage: blob,
       bgModalOpen: false
     });
@@ -96,6 +98,7 @@ class App extends Component {
 
   render() {
     const {
+      color,
       colorType,
       backgroundType,
       backgroundColor,
@@ -144,19 +147,19 @@ class App extends Component {
             handleColorType={this.handleColorType}
           />
           <Palette
-            color={this.state[`${colorType}Color`]}
+            color={this.state.color}
+            // color={this.state[`${colorType}Color`]}
             onChange={this.handleChange}
           />
-          <Button
+          {/* <Button
             type="primary"
             icon="file-image"
             onClick={this.handleBgModal(true)}
             style={{
               marginBottom: 10
-            }}
-          >
+            }}>
             Background Image
-          </Button>
+          </Button> */}
           <a href={href} download="banner-image.png">
             <Button
               type="primary"

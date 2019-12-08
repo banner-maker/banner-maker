@@ -8,20 +8,30 @@ export const Swatches = ({ colors, onClick, onSwatchHover }) => {
       display: "flex",
       flexDirecection: "row",
       flexFlow: "row wrap",
-      justifyContent: "center"
+      justifyContent: "center",
+      marginBottom: "5px"
     }
   };
 
   return (
     <div style={styles.swatches}>
-      {colors.map(color => (
-        <MySwatch
-          key={color}
-          color={color}
-          onClick={onClick}
-          onSwatchHover={onSwatchHover}
-        />
-      ))}
+      {colors.map((color, idx) => {
+        let edge = "";
+        if (idx === 8) {
+          edge = "bottomLeft";
+        } else if (idx === 15) {
+          edge = "bottomRight";
+        }
+        return (
+          <MySwatch
+            key={color}
+            color={color}
+            onClick={onClick}
+            onSwatchHover={onSwatchHover}
+            edge={edge}
+          />
+        );
+      })}
     </div>
   );
 };

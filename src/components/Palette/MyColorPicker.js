@@ -1,20 +1,9 @@
 import React from "react";
 import { CustomPicker } from "react-color";
-import {
-  Saturation,
-  EditableInput,
-  Hue
-} from "react-color/lib/components/common";
+import { Saturation, Hue } from "react-color/lib/components/common";
 import Swatches from "./Swatches";
 
-export const MyColorPicker = ({
-  hex,
-  hsl,
-  hsv,
-  onChange,
-  onChangeComplete,
-  onSwatchHover
-}) => {
+export const MyColorPicker = ({ hsl, hsv, onChange, onSwatchHover }) => {
   const colors = [
     "#f44336", // #1
     "#e91e63",
@@ -31,16 +20,14 @@ export const MyColorPicker = ({
     "#ffeb3b", // #3
     "#ffc107",
     "#ff9800",
-    "#ff5722",
-    "#795548",
-    "#607d8b"
+    "#ff5722"
   ];
   const styles = {
     body: {
-      borderRadius: "6px",
+      borderRadius: "14px",
       width: "200px",
       backgroundColor: "#fff",
-      marginBottom: "30px"
+      transition: `visibility 0s, opacity 0.5s linear`
     },
     Saturation: {
       borderRadius: "5px 5px 0 0"
@@ -54,6 +41,7 @@ export const MyColorPicker = ({
     },
     swatch: {
       marginTop: "6px",
+      marginBottom: "5px",
       width: "16px",
       height: "16px",
       borderRadius: "8px",
@@ -61,8 +49,8 @@ export const MyColorPicker = ({
       overflow: "hidden"
     },
     hue: {
-      height: 10,
-      margin: 5,
+      width: "200px",
+      height: " 10px",
       position: "relative"
     },
     triangle: {
@@ -70,30 +58,26 @@ export const MyColorPicker = ({
       height: "0px",
       borderStyle: "solid",
       borderWidth: "10px 10px 10px 10px",
-      borderColor: `${hex} transparent transparent transparent`,
+      borderColor: `#fff transparent transparent transparent`,
       position: "absolute",
       left: "50%",
       marginLeft: "-10px"
     },
-    input: {
-      background: "transparent",
-      color: "#fff",
-      padding: "0px",
-      border: "0px",
-      borderBottom: `1px solid #fff`,
-      outline: "none",
-      width: "78px",
-      fontSize: "16px",
-      textAlign: "center"
+    squareShadow: {
+      position: "absolute",
+      width: "200px",
+      top: "10px",
+      height: "150px",
+      boxShadow: "0px 0px 30px 5px rgba(0, 0, 0, 0.50)"
     },
-
-    bandswatch: {
-      paddingTop: "15px",
-      paddingBottom: "15px",
-      borderRadius: "0 0 5px 5px",
-      display: "flex",
-      justifyContent: "center",
-      background: hex
+    roundShadow: {
+      position: "absolute",
+      top: "100px",
+      width: "200px",
+      height: "78px",
+      borderRadius: "12px",
+      backgroundColor: "white",
+      boxShadow: "0px 0px 30px 5px rgba(0, 0, 0, 0.50)"
     }
   };
 
@@ -101,10 +85,11 @@ export const MyColorPicker = ({
 
   return (
     <div style={styles.body}>
+      <div className="squareShadow" style={styles.squareShadow}></div>
+      <div className="roundShadow" style={styles.roundShadow}></div>
+      <div style={{ height: 0, width: 200, position: "relative" }} />
       <div style={styles.saturation}>
         <Saturation
-          style={{ radius: "10px" }}
-          hex={hex}
           hsl={hsl}
           hsv={hsv}
           onChange={onChange}
@@ -120,13 +105,6 @@ export const MyColorPicker = ({
           onClick={handleSwatchChange}
           onSwatchHover={onSwatchHover}
         />
-        <div style={styles.bandswatch}>
-          <EditableInput
-            style={{ input: styles.input }}
-            value={hex}
-            onChange={onChange}
-          />
-        </div>
       </div>
       <div style={styles.triangle} />
     </div>

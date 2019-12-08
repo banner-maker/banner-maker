@@ -1,5 +1,6 @@
 $sideTabWidth: 50px;
 $sidePaneWidth: 200px;
+$topLayer: 100;
 
 .sidetab {
   position: fixed;
@@ -12,6 +13,7 @@ $sidePaneWidth: 200px;
   background-color: #393f4c;
   width: $sideTabWidth;
   height: 100%;
+  z-index: $topLayer;
 }
 
 .sidePane {

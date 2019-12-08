@@ -27,13 +27,13 @@ class Palette extends Component {
       border: "1px solid #fff",
       borderRadius: "4px",
       cursor: "pointer",
-      backgroundColor: color
+      backgroundColor: color.hex
     };
 
     const popover = {
       position: "absolute",
       zIndex: "2",
-      top: "-290px"
+      top: "-185px"
     };
 
     // 배경 커버 클릭 했을 때 팝오버 사라지게 하기 위함
@@ -55,15 +55,10 @@ class Palette extends Component {
         {this.state.displayColorPicker ? (
           <div style={popover}>
             <div style={cover} onClick={this.handleClose} />
-            <MyColorPicker
-              hex={color}
-              onChange={onChange}
-              onChangeComplete={onChange}
-            />
+            <MyColorPicker color={color} onChangeComplete={onChange} />
           </div>
         ) : null}
-        <div className="hexLabel">{color}</div>
-        <div className="circlePicker" />
+        <div className="hexLabel">{color.hex}</div>
       </div>
     );
   }
