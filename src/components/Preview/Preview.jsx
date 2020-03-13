@@ -1,19 +1,19 @@
 import React, { useRef, useEffect } from "react";
 import { setCanvasFont, drawText, loadImage } from "./utils";
-import './Preview.scss';
+import "./Preview.scss";
 
 const Preview = ({
-    width,
-    height,
-    fontSize,
-    fontFamily,
+  width,
+  height,
+  fontSize,
+  fontFamily,
   textColor,
-    lineHeight,
-    backgroundColor,
-    backgroundType,
-    backgroundImage,
-    text,
-    updateCanvas
+  lineHeight,
+  backgroundColor,
+  backgroundType,
+  backgroundImage,
+  text,
+  updateCanvas
 }) => {
   const canvasRef = useRef(null);
 
