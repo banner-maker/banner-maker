@@ -9,23 +9,22 @@ import Input from "./components/Input";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import { PICKER_TYPE } from "./common/Constant";
+import { getContrastYIQ, getRandomHexColor } from "./common/Utils";
 import SideTab from "./components/SideTab/SideTab";
 import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
 class App extends Component {
   constructor(props) {
     super(props);
-    const initColor = this.getRandomColor();
+    const initColor = getRandomHexColor();
+
     this.state = {
-      color: {
-        hex: initColor
-      },
       pickerType: PICKER_TYPE.BACKGROUND,
       width: "700",
       height: "350",
       backgroundType: "color",
       backgroundImage: null,
       backgroundColor: initColor,
-      fontColor: "white",
+      textColor: getContrastYIQ(initColor.slice(-6)),
       text: "Sample Text",
       href: "",
       fontFamily: "SF Pro",
@@ -37,12 +36,9 @@ class App extends Component {
     };
   }
 
-  colorChange = data => {
-    if (data.hsl !== this.state.color) {
-      this.setState({ color: data });
-    }
+  colorChange = ({ hex, hsl, pickerType }) => {
     this.setState({
-      [`${this.state.pickerType}Color`]: data.hex,
+      [`${pickerType}Color`]: hex,
       backgroundType: "color"
     });
   };
@@ -61,10 +57,6 @@ class App extends Component {
 
   handleColorType = colorType => {
     this.setState({ colorType });
-  };
-
-  getRandomColor = () => {
-    return "#" + `0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6);
   };
 
   handleCanvasChange = href => {
@@ -86,7 +78,8 @@ class App extends Component {
   render() {
     const {
       colorType,
-      fontColor,
+      textColor,
+      backgroundColor,
       href,
       text,
       fontFamilyList,
@@ -104,7 +97,7 @@ class App extends Component {
             onInputChange={this.handleInputChange}
           />
           <Preview {...this.state} updateCanvas={this.handleCanvasChange} />
-          <Input color={fontColor} onChange={this.handleInputChange} />
+          <Input color={textColor} onChange={this.handleInputChange} />
           <Editor
             colorType={colorType}
             fontFamilyList={fontFamilyList}
@@ -113,7 +106,11 @@ class App extends Component {
             handleFontFamily={this.handleFontFamily}
             handleColorType={this.handleColorType}
           />
-          <Palette color={this.state.color.hex} onChange={this.colorChange} />
+          <Palette
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+            onChange={this.colorChange}
+          />
           <DownloadButton href={href} text={text} />
           <SideTab />
           <BgImageSelectModal
