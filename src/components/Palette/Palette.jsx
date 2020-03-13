@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PickerIcon from "./PickerIcon.jsx";
 import { PICKER_TYPE } from "common/Constant";
-const Palette = ({ color, onChange }) => {
-  const [pickerType, setPickerType] = useState("BACKGROUND");
-
+const Palette = ({ textColor, backgroundColor, onChange }) => {
   const paletteWrapper = {
     display: "flex",
     flexDirection: "row",
@@ -13,17 +11,15 @@ const Palette = ({ color, onChange }) => {
 
   return (
     <div className="paletteWrapper" style={paletteWrapper}>
-      <PickerIcon rectColor="#282c34" hexColor={color} iconName="picture" />
       <PickerIcon
         pickerType={PICKER_TYPE.BACKGROUND}
-        hexColor={color}
+        hexColor={backgroundColor}
         iconName="bg-colors"
         pickerHandler={onChange}
       />
       <PickerIcon
         pickerType={PICKER_TYPE.TEXT}
-        rectColor="#282c34"
-        hexColor={color}
+        hexColor={textColor}
         iconName="font-colors"
         pickerHandler={onChange}
       />

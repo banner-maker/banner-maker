@@ -1,40 +1,39 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 import { setCanvasFont, drawText, loadImage } from "./utils";
 import './Preview.scss';
 
-const Preview = (props) => {
-  const canvasRef = useRef(null);
-  const {
+const Preview = ({
     width,
     height,
-    color,
     fontSize,
     fontFamily,
-    fontColor,
+  textColor,
     lineHeight,
     backgroundColor,
     backgroundType,
     backgroundImage,
     text,
     updateCanvas
-  } = props;
+}) => {
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const render = async () => {
       const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
 
       if (backgroundType === "color") {
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       } else {
         const img = await loadImage(backgroundImage);
-        ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
+        // prettier-ignore
+        ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
           0, 0, canvas.width, canvas.height); // destination rectangle
       }
 
       setCanvasFont(canvas, text, {
-        color: fontColor,
+        color: textColor,
         size: fontSize,
         font: fontFamily
       });
@@ -46,10 +45,9 @@ const Preview = (props) => {
   }, [
     width,
     height,
-    color,
     fontSize,
     fontFamily,
-    fontColor,
+    textColor,
     lineHeight,
     backgroundColor,
     backgroundType,

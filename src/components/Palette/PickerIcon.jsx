@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import MyColorPicker from "./MyColorPicker";
+import { PICKER_TYPE } from "common/Constant";
 import { getContrastYIQ } from "common/Utils";
 import { Icon } from "antd";
 
-const PickerIcon = ({
-  hexColor,
-  rectColor,
-  pickerType,
-  iconName,
-  pickerHandler
-}) => {
+const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
   const [showPicker, setShowPicker] = useState(false);
 
   const handleClose = () => {
@@ -17,7 +12,6 @@ const PickerIcon = ({
   };
 
   const handleClick = () => {
-    console.log("click");
     setShowPicker(!showPicker);
   };
 
@@ -31,11 +25,17 @@ const PickerIcon = ({
     borderRadius: "4px",
     cursor: "pointer",
     margin: "5px",
-    backgroundColor: rectColor || hexColor
+    backgroundColor:
+      pickerType === PICKER_TYPE.BACKGROUND
+        ? hexColor
+        : getContrastYIQ(hexColor.slice(-6))
   };
 
   const icon = {
-    color: rectColor ? "white" : getContrastYIQ(hexColor.slice(-6)),
+    color:
+      pickerType === PICKER_TYPE.BACKGROUND
+        ? getContrastYIQ(hexColor.slice(-6))
+        : hexColor,
     fontSize: "1.6em"
   };
 
@@ -55,6 +55,10 @@ const PickerIcon = ({
     left: "0px"
   };
 
+  const handleChange = (colors, event) => {
+    pickerHandler({ ...colors, event, pickerType });
+  };
+
   return (
     <div className="pickerWrapper" style={{ position: "relative" }}>
       <div
@@ -67,9 +71,9 @@ const PickerIcon = ({
         <div style={popover}>
           <div style={cover} onClick={() => handleClose()} />
           <MyColorPicker
-            pickerType={pickerType}
             color={hexColor}
-            onChangeComplete={pickerHandler}
+            onChangeComplete={handleChange}
+            onChange={handleChange}
           />
         </div>
       )}
