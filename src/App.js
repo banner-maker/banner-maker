@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "antd";
+import DownloadButton from "./components/Button/DownloadButton.jsx";
 import "./styles/App.scss";
 import "antd/dist/antd.css";
 import SizeForm from "./components/SizeForm";
@@ -8,27 +8,23 @@ import Preview from "./components/Preview";
 import Input from "./components/Input";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
-import { COLOR_TYPE } from "./common/Constant";
+import { PICKER_TYPE } from "./common/Constant";
+import { getContrastYIQ, getRandomHexColor } from "./common/Utils";
 import SideTab from "./components/SideTab/SideTab";
-import ReactGA from "react-ga";
 import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
-ReactGA.initialize("UA-80202920-2");
-
 class App extends Component {
   constructor(props) {
     super(props);
-    const initColor = this.getRandomColor();
+    const initColor = getRandomHexColor();
+
     this.state = {
-      color: {
-        hex: initColor
-      },
-      colorType: COLOR_TYPE.BACKGROUND,
+      pickerType: PICKER_TYPE.BACKGROUND,
       width: "700",
       height: "350",
       backgroundType: "color",
       backgroundImage: null,
       backgroundColor: initColor,
-      fontColor: "white",
+      textColor: getContrastYIQ(initColor.slice(-6)),
       text: "Sample Text",
       href: "",
       fontFamily: "SF Pro",
@@ -40,13 +36,9 @@ class App extends Component {
     };
   }
 
-  handleChange = data => {
-    if (data.hsl !== this.state.color) {
-      this.setState({ color: data });
-    }
-    const { colorType } = this.state;
+  colorChange = ({ hex, hsl, pickerType }) => {
     this.setState({
-      [`${colorType}Color`]: data.hex,
+      [`${pickerType}Color`]: hex,
       backgroundType: "color"
     });
   };
@@ -67,10 +59,6 @@ class App extends Component {
     this.setState({ colorType });
   };
 
-  getRandomColor = () => {
-    return "#" + `0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6);
-  };
-
   handleCanvasChange = href => {
     this.setState({ href });
   };
@@ -87,30 +75,15 @@ class App extends Component {
     });
   };
 
-  sendLog = () => {
-    const { text } = this.state;
-    ReactGA.event({
-      category: "DOWNLOAD",
-      action: "Click",
-      label: text
-    });
-  };
-
   render() {
     const {
-      color,
       colorType,
-      backgroundType,
+      textColor,
       backgroundColor,
-      backgroundImage,
-      fontColor,
-      text,
       href,
-      fontSize,
-      fontFamily,
+      text,
       fontFamilyList,
       fontSizeList,
-      lineHeight,
       width,
       height
     } = this.state;
@@ -123,21 +96,8 @@ class App extends Component {
             height={height}
             onInputChange={this.handleInputChange}
           />
-          <Preview
-            backgroundType={backgroundType}
-            backgroundColor={backgroundColor}
-            backgroundImage={backgroundImage}
-            fontColor={fontColor}
-            text={text}
-            href={href}
-            width={width}
-            height={height}
-            fontFamily={fontFamily}
-            fontSize={fontSize}
-            lineHeight={lineHeight}
-            updateCanvas={this.handleCanvasChange}
-          />
-          <Input color={fontColor} onChange={this.handleInputChange} />
+          <Preview {...this.state} updateCanvas={this.handleCanvasChange} />
+          <Input color={textColor} onChange={this.handleInputChange} />
           <Editor
             colorType={colorType}
             fontFamilyList={fontFamilyList}
@@ -147,28 +107,11 @@ class App extends Component {
             handleColorType={this.handleColorType}
           />
           <Palette
-            color={this.state.color}
-            // color={this.state[`${colorType}Color`]}
-            onChange={this.handleChange}
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+            onChange={this.colorChange}
           />
-          {/* <Button
-            type="primary"
-            icon="file-image"
-            onClick={this.handleBgModal(true)}
-            style={{
-              marginBottom: 10
-            }}>
-            Background Image
-          </Button> */}
-          <a href={href} download="banner-image.png">
-            <Button
-              type="primary"
-              icon="download"
-              size="large"
-              onClick={() => this.sendLog()}>
-              Download
-            </Button>
-          </a>
+          <DownloadButton href={href} text={text} />
           <SideTab />
           <BgImageSelectModal
             open={this.state.bgModalOpen}

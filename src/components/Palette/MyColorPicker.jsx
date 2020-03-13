@@ -1,27 +1,10 @@
 import React from "react";
 import { CustomPicker } from "react-color";
+import { SWATCH_PRESET } from "common/Constant";
 import { Saturation, Hue } from "react-color/lib/components/common";
 import Swatches from "./Swatches";
 
 export const MyColorPicker = ({ hsl, hsv, onChange, onSwatchHover }) => {
-  const colors = [
-    "#f44336", // #1
-    "#e91e63",
-    "#9c27b0",
-    "#673ab7",
-    "#3f51b5",
-    "#2196f3",
-    "#03a9f4", // #2
-    "#00bcd4",
-    "#009688",
-    "#4caf50",
-    "#8bc34a",
-    "#cddc39",
-    "#ffeb3b", // #3
-    "#ffc107",
-    "#ff9800",
-    "#ff5722"
-  ];
   const styles = {
     body: {
       borderRadius: "14px",
@@ -101,7 +84,7 @@ export const MyColorPicker = ({ hsl, hsv, onChange, onSwatchHover }) => {
           <Hue hsl={hsl} onChange={onChange} />
         </div>
         <Swatches
-          colors={colors}
+          colors={SWATCH_PRESET}
           onClick={handleSwatchChange}
           onSwatchHover={onSwatchHover}
         />

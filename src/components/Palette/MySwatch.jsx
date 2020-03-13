@@ -1,11 +1,9 @@
 import React from "react";
 import reactCSS, { handleHover } from "reactcss";
-
 import { Swatch } from "react-color/lib/components/common";
 
 export const MySwatch = ({ hover, color, onClick, onSwatchHover, edge }) => {
   const hoverSwatch = {
-    // border: "1px solid #fff",
     opacity: "0.5",
     boxShadow: `inset 0 0 0 4px ${color}`,
     transition: `opacity 150ms ease 0s`
