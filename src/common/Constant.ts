@@ -2,6 +2,7 @@ export const PICKER_TYPE = {
   BACKGROUND: "background",
   TEXT: "text"
 };
+export type picker = "bg" | "text";
 
 export const SWATCH_PRESET = [
   "#f44336",
