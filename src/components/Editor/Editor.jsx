@@ -1,6 +1,5 @@
 import React from "react";
 import SelectMenu from "../SelectMenu";
-
 const Editor = ({
   fontFamilyList,
   fontSizeList,
