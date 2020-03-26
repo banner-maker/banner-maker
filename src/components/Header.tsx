@@ -1,9 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Helmet } from "react-helmet";
-import "./Header.scss";
 import styled from "styled-components";
 
-const Header = () => {
+export const Header: React.FC = () => {
   const HeaderWrapper = styled.div`
     position: fixed;
     top: 10px;
@@ -62,5 +61,3 @@ const Header = () => {
     </>
   );
 };
-
-export default Header;
