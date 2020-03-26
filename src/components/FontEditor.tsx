@@ -1,6 +1,14 @@
 import React from "react";
-import SelectMenu from "../SelectMenu";
-const Editor = ({
+import SelectMenu from "./SelectMenu";
+
+interface FontEditorProps {
+  fontFamilyList: [string];
+  fontSizeList: [string];
+  handleFontFamily: (fontFamily: string) => void;
+  handleFontSize: (fontSize: string) => void;
+}
+
+const FontEditor: React.FC<FontEditorProps> = ({
   fontFamilyList,
   fontSizeList,
   handleFontFamily,
@@ -22,4 +30,4 @@ const Editor = ({
   );
 };
 
-export default Editor;
+export default FontEditor;
