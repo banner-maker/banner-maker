@@ -6,7 +6,7 @@ import SizeForm from "./components/SizeForm";
 import Palette from "./components/Palette";
 import Preview from "./components/Preview";
 import Input from "./components/Input";
-import Header from "./components/Header";
+import { Header } from "./components/Header";
 import Editor from "./components/Editor";
 import { PICKER_TYPE } from "./common/Constant";
 import { getContrastYIQ, getRandomHexColor } from "./common/Utils";
