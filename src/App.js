@@ -1,79 +1,80 @@
-import React, { Component } from "react";
-import DownloadButton from "./components/Button/DownloadButton.jsx";
-import "./styles/App.scss";
-import "antd/dist/antd.css";
-import SizeForm from "./components/SizeForm";
-import FontEditor from "./components/FontEditor";
-import Palette from "./components/Palette";
-import Preview from "./components/Preview";
-import Input from "./components/Input";
-import { Header } from "./components/Header";
-import { PICKER_TYPE } from "./common/Constant";
-import { getContrastYIQ, getRandomHexColor } from "./common/Utils";
-import SideTab from "./components/SideTab/SideTab";
-import BgImageSelectModal from "./components/modal/BgImageSelectModal/BgImageSelectModal";
+import React, { Component } from 'react'
+import DownloadButton from './components/Button/DownloadButton.jsx'
+import './styles/App.scss'
+import 'antd/dist/antd.css'
+import SizeForm from './components/SizeForm'
+import FontEditor from './components/FontEditor'
+import Palette from './components/Palette'
+import Preview from './components/Preview'
+import Input from './components/Input'
+import { Header } from './components/Header'
+import { PICKER_TYPE } from './common/Constant'
+import { getContrastYIQ, getRandomHexColor } from './common/Utils'
+import SideTab from './components/SideTab/SideTab'
+import BgImageSelectModal from './components/modal/BgImageSelectModal/BgImageSelectModal'
+
 class App extends Component {
   constructor(props) {
-    super(props);
-    const initColor = getRandomHexColor();
+    super(props)
+    const initColor = getRandomHexColor()
 
     this.state = {
       pickerType: PICKER_TYPE.BACKGROUND,
-      width: "700",
-      height: "350",
-      backgroundType: "color",
+      width: '700',
+      height: '350',
+      backgroundType: 'color',
       backgroundImage: null,
       backgroundColor: initColor,
       textColor: getContrastYIQ(initColor.slice(-6)),
-      text: "Sample Text",
-      href: "",
-      fontFamily: "SF Pro",
-      fontFamilyList: ["SF Pro", "Times New Roman", "Helvetica", "Courier"],
+      text: 'Sample Text',
+      href: '',
+      fontFamily: 'SF Pro',
+      fontFamilyList: ['SF Pro', 'Times New Roman', 'Helvetica', 'Courier'],
       fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
-      fontSize: "40",
+      fontSize: '40',
       lineHeight: 1.4,
-      bgModalOpen: false
-    };
+      bgModalOpen: false,
+    }
   }
 
   colorChange = ({ hex, hsl, pickerType }) => {
     this.setState({
       [`${pickerType}Color`]: hex,
-      backgroundType: "color"
-    });
-  };
+      backgroundType: 'color',
+    })
+  }
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  handleInputChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
-  handleFontSize = fontSize => {
-    this.setState({ fontSize });
-  };
+  handleFontSize = (fontSize) => {
+    this.setState({ fontSize })
+  }
 
-  handleFontFamily = fontFamily => {
-    this.setState({ fontFamily });
-  };
+  handleFontFamily = (fontFamily) => {
+    this.setState({ fontFamily })
+  }
 
-  handleColorType = colorType => {
-    this.setState({ colorType });
-  };
+  handleColorType = (colorType) => {
+    this.setState({ colorType })
+  }
 
-  handleCanvasChange = href => {
-    this.setState({ href });
-  };
+  handleCanvasChange = (href) => {
+    this.setState({ href })
+  }
 
-  handleBgModal = open => () => {
-    this.setState({ bgModalOpen: open });
-  };
+  handleBgModal = (open) => () => {
+    this.setState({ bgModalOpen: open })
+  }
 
-  setBackgroundImage = blob => {
+  setBackgroundImage = (blob) => {
     this.setState({
-      backgroundType: "image",
+      backgroundType: 'image',
       backgroundImage: blob,
-      bgModalOpen: false
-    });
-  };
+      bgModalOpen: false,
+    })
+  }
 
   render() {
     const {
@@ -84,12 +85,12 @@ class App extends Component {
       fontFamilyList,
       fontSizeList,
       width,
-      height
-    } = this.state;
+      height,
+    } = this.state
     return (
-      <div className="App">
+      <div className='App'>
         <Header />
-        <div className="content">
+        <div className='content'>
           <SizeForm
             width={width}
             height={height}
@@ -117,8 +118,8 @@ class App extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

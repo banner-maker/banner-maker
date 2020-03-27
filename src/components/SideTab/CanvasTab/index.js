@@ -1,1 +1,1 @@
-export { default } from "./CanvasTab";
+export { default } from './CanvasTab'

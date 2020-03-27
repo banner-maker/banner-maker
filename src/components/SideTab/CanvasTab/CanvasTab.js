@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SizeForm from "../../SizeForm";
+import React, { Component } from 'react'
+import SizeForm from '../../SizeForm'
 
 class CanvasTab extends Component {
   render() {
@@ -11,8 +11,8 @@ class CanvasTab extends Component {
           onInputChange={this.handleInputChange}
         />
       </div>
-    );
+    )
   }
 }
 
-export default CanvasTab;
+export default CanvasTab
