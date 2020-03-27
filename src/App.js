@@ -3,11 +3,11 @@ import DownloadButton from "./components/Button/DownloadButton.jsx";
 import "./styles/App.scss";
 import "antd/dist/antd.css";
 import SizeForm from "./components/SizeForm";
+import FontEditor from "./components/FontEditor";
 import Palette from "./components/Palette";
 import Preview from "./components/Preview";
 import Input from "./components/Input";
-import Header from "./components/Header";
-import Editor from "./components/Editor";
+import { Header } from "./components/Header";
 import { PICKER_TYPE } from "./common/Constant";
 import { getContrastYIQ, getRandomHexColor } from "./common/Utils";
 import SideTab from "./components/SideTab/SideTab";
@@ -77,7 +77,6 @@ class App extends Component {
 
   render() {
     const {
-      colorType,
       textColor,
       backgroundColor,
       href,
@@ -98,13 +97,11 @@ class App extends Component {
           />
           <Preview {...this.state} updateCanvas={this.handleCanvasChange} />
           <Input color={textColor} onChange={this.handleInputChange} />
-          <Editor
-            colorType={colorType}
+          <FontEditor
             fontFamilyList={fontFamilyList}
             fontSizeList={fontSizeList}
-            handleFontSize={this.handleFontSize}
-            handleFontFamily={this.handleFontFamily}
-            handleColorType={this.handleColorType}
+            onFontSizeChange={this.handleFontSize}
+            onFontFamilyChange={this.handleFontFamily}
           />
           <Palette
             backgroundColor={backgroundColor}

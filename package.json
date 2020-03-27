@@ -7,13 +7,14 @@
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
-    "react": "^16.8.3",
+    "react": "^16.13.0",
     "react-color": "^2.17.0",
     "react-dom": "^16.8.3",
     "react-ga": "^2.5.7",
     "react-helmet": "^5.2.0",
-    "react-scripts": "^3.0.1",
-    "reactcss": "^1.2.3"
+    "react-scripts": "^3.4.0",
+    "reactcss": "^1.2.3",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,7 +32,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0"
+    "@types/react-helmet": "^5.0.15",
+    "@types/styled-components": "^5.0.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.8.3",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0"
   }
 }
