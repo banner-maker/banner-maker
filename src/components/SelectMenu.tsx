@@ -2,7 +2,7 @@ import React from "react";
 import { Select } from "antd";
 
 interface SelectMenuProps {
-  selectList: [string | number];
+  selectList: (string | number)[];
   typeLabel: string;
   handleChange: (option: string) => void;
 }
