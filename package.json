@@ -52,6 +52,7 @@
     "lint-staged": "^10.0.9",
     "node-sass": "^4.13.1",
     "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.8.3"
   }
