@@ -100,8 +100,8 @@ class App extends Component {
           <FontEditor
             fontFamilyList={fontFamilyList}
             fontSizeList={fontSizeList}
-            handleFontSize={this.handleFontSize}
-            handleFontFamily={this.handleFontFamily}
+            onFontSizeChange={this.handleFontSize}
+            onFontFamilyChange={this.handleFontFamily}
           />
           <Palette
             backgroundColor={backgroundColor}

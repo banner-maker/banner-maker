@@ -2,29 +2,29 @@ import React from "react";
 import SelectMenu from "./SelectMenu";
 
 interface FontEditorProps {
-  fontFamilyList: [string];
-  fontSizeList: [string];
-  handleFontFamily: (fontFamily: string) => void;
-  handleFontSize: (fontSize: string) => void;
+  fontFamilyList: string[];
+  fontSizeList: string[];
+  onFontFamilyChange: (fontFamily: string) => void;
+  onFontSizeChange: (fontSize: string) => void;
 }
 
 const FontEditor: React.FC<FontEditorProps> = ({
   fontFamilyList,
   fontSizeList,
-  handleFontFamily,
-  handleFontSize
+  onFontFamilyChange,
+  onFontSizeChange
 }) => {
   return (
     <div className="editorWrapper">
       <SelectMenu
         typeLabel="font-family"
         selectList={fontFamilyList}
-        handleChange={handleFontFamily}
+        handleChange={onFontFamilyChange}
       />
       <SelectMenu
         typeLabel="font-size"
         selectList={fontSizeList}
-        handleChange={handleFontSize}
+        handleChange={onFontSizeChange}
       />
     </div>
   );
