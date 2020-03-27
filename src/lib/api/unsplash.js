@@ -1,5 +1,5 @@
 import axios from 'axios'
-import objectToQueryString from 'lib/objectToQueryString'
+import objectToQueryString from '../objectToQueryString'
 
 const instance = axios.create({
   baseURL: 'https://api.unsplash.com',
@@ -8,12 +8,10 @@ const instance = axios.create({
   },
 })
 
-export const getRandomPhotos = (params) =>
-  instance
-    .get(`/photos/random?${objectToQueryString(params)}`)
-    .then((res) => res.data)
+export const getRandomPhotos = (params) => instance
+  .get(`/photos/random?${objectToQueryString(params)}`)
+  .then((res) => res.data)
 
-export const searchPhotos = (params) =>
-  instance
-    .get(`/search/photos?${objectToQueryString(params)}`)
-    .then((res) => res.data)
+export const searchPhotos = (params) => instance
+  .get(`/search/photos?${objectToQueryString(params)}`)
+  .then((res) => res.data)

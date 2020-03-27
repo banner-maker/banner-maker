@@ -6,5 +6,5 @@ export const getContrastYIQ = (color) => {
   return yiq >= 220 ? '#000000' : '#ffffff'
 }
 
-export const getRandomHexColor = () =>
-  `#${`0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6)}`
+// eslint-disable-next-line
+export const getRandomHexColor = () => `#${`0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6)}`

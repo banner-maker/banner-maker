@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon } from 'antd'
 import './SideItem.scss'
 
-const SideItem = ({ menu, onClick, position, border }) => (
+const SideItem = ({ menu, onClick }) => (
   <div className='sideItem'>
     <Icon
       type={menu.iconType}

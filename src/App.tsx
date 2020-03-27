@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DownloadButton from './components/Button/DownloadButton.jsx'
+import DownloadButton from './components/Button/DownloadButton'
 import './styles/App.scss'
 import 'antd/dist/antd.css'
 import SizeForm from './components/SizeForm'
@@ -10,7 +10,7 @@ import Input from './components/Input'
 import { Header } from './components/Header'
 import { PICKER_TYPE } from './common/Constant'
 import { getContrastYIQ, getRandomHexColor } from './common/Utils'
-import SideTab from './components/SideTab/SideTab'
+import SideTab from './components/SideTab'
 import BgImageSelectModal from './components/modal/BgImageSelectModal/BgImageSelectModal'
 
 class App extends Component {
@@ -96,8 +96,14 @@ class App extends Component {
             height={height}
             onInputChange={this.handleInputChange}
           />
-          <Preview {...this.state} updateCanvas={this.handleCanvasChange} />
-          <Input color={textColor} onChange={this.handleInputChange} />
+          <Preview
+            {...this.state}
+            updateCanvas={this.handleCanvasChange}
+          />
+          <Input
+            color={textColor}
+            onChange={this.handleInputChange}
+          />
           <FontEditor
             fontFamilyList={fontFamilyList}
             fontSizeList={fontSizeList}
@@ -109,7 +115,10 @@ class App extends Component {
             textColor={textColor}
             onChange={this.colorChange}
           />
-          <DownloadButton href={href} text={text} />
+          <DownloadButton
+            href={href}
+            text={text}
+          />
           <SideTab />
           <BgImageSelectModal
             open={this.state.bgModalOpen}

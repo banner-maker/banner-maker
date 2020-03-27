@@ -21,12 +21,11 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.ts', '.tsx', '.js'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
   plugins: [
-    'plugin:react/recommended',
     'react',
     'jsx-a11y',
     'import',
@@ -35,6 +34,16 @@ module.exports = {
     'eslint-plugin-prettier',
   ],
   rules: {
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
     semi: ['error', 'never'],
     camelcase: 'off',
     'import/no-extraneous-dependencies': 'off',

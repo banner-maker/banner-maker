@@ -42,7 +42,6 @@ class SideTab extends Component {
           <SideItem
             key={idx}
             menu={menu}
-            isActive={isActive}
             onClick={this.handleSideToggle}
           />
         ))}
