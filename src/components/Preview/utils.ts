@@ -17,7 +17,7 @@ export const drawText = (canvas, text, fontSize, lineHeight) => {
 
   if (lines.length % 2) {
     lines.map((line, index) => {
-      const middle = parseInt(lines.length / 2, 10)
+      const middle = parseInt((lines.length / 2).toString(), 10)
       const h = defaultHeight + (index - middle) * fontHeight
       ctx.fillText(line, defaultWidth, h)
       return null
@@ -28,7 +28,7 @@ export const drawText = (canvas, text, fontSize, lineHeight) => {
       .map((line, index) => index)
       .reduce((prev, curr) => {
         const subtract = curr - mid
-        prev.push([subtract < 0, parseInt(subtract, 10)])
+        prev.push([subtract < 0, parseInt(subtract.toString(), 10)])
         return prev
       }, [])
     offsets.map(([sign, offset], index) => {
@@ -46,8 +46,7 @@ export const loadImage = (blob) => new Promise((resolve) => {
   const reader = new FileReader()
   reader.readAsDataURL(blob)
   reader.onloadend = () => {
-    console.log(reader.result)
-    img.src = reader.result
+    img.src = reader.result as string
     img.crossOrigin = 'Anonymous'
     img.onload = () => resolve(img)
   }
