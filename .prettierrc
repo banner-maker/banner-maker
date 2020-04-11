@@ -1,3 +1,14 @@
 {
-  "jsxBracketSameLine": true
+  "endOfLine": "lf",
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 80,
+  "arrowParens": "always",
+  "parser": "typescript",
+  "bracketSpacing": true,
+  "jsxSingleQuote": true,
+  "useTabs": false,
+  "htmlWhitespaceSensitivity": "strict"
 }
