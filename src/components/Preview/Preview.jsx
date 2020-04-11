@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { setCanvasFont, drawText, loadImage } from './utils'
+import { setCanvasFont, drawText, loadImage } from './utils.ts'
 import './Preview.scss'
 
 const Preview = ({
