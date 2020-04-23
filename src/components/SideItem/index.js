@@ -1,1 +1,1 @@
-export { default } from "./SideItem";
+export { default } from './SideItem'

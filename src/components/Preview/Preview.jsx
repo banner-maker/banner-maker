@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import { setCanvasFont, drawText, loadImage } from "./utils";
-import "./Preview.scss";
+import React, { useRef, useEffect } from 'react'
+import { setCanvasFont, drawText, loadImage } from './utils.ts'
+import './Preview.scss'
 
 const Preview = ({
   width,
@@ -13,35 +13,35 @@ const Preview = ({
   backgroundType,
   backgroundImage,
   text,
-  updateCanvas
+  updateCanvas,
 }) => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(null)
 
   useEffect(() => {
     const render = async () => {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
+      const canvas = canvasRef.current
+      const ctx = canvas.getContext('2d')
 
-      if (backgroundType === "color") {
-        ctx.fillStyle = backgroundColor;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (backgroundType === 'color') {
+        ctx.fillStyle = backgroundColor
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
       } else {
-        const img = await loadImage(backgroundImage);
+        const img = await loadImage(backgroundImage)
         // prettier-ignore
-        ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
-          0, 0, canvas.width, canvas.height); // destination rectangle
+        ctx.drawImage(img, 0, 0, img.width, img.height, // source rectangle
+          0, 0, canvas.width, canvas.height) // destination rectangle
       }
 
       setCanvasFont(canvas, text, {
         color: textColor,
         size: fontSize,
-        font: fontFamily
-      });
+        font: fontFamily,
+      })
 
-      drawText(canvas, text, fontSize, lineHeight);
-      updateCanvas(canvas.toDataURL());
-    };
-    render();
+      drawText(canvas, text, fontSize, lineHeight)
+      updateCanvas(canvas.toDataURL())
+    }
+    render()
   }, [
     width,
     height,
@@ -53,19 +53,19 @@ const Preview = ({
     backgroundType,
     backgroundImage,
     text,
-    updateCanvas
-  ]);
+    updateCanvas,
+  ])
 
   return (
     <>
       <canvas
         ref={canvasRef}
-        className="previewCanvas"
+        className='previewCanvas'
         width={width}
         height={height}
       />
     </>
-  );
-};
+  )
+}
 
-export default Preview;
+export default Preview
