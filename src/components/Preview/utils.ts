@@ -1,17 +1,17 @@
-export const setCanvasFont = (canvas, text, params) => {
+export const setCanvasFont = (canvas, params) => {
   const ctx = canvas.getContext('2d')
-  const { color, size, font } = params
-  ctx.font = `${size}px ${font}`
+  const { color, size, family } = params
+  ctx.font = `${size}px ${family}`
   ctx.fillStyle = color
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
 }
 
-export const drawText = (canvas, text, fontSize, lineHeight) => {
+export const drawText = (canvas, text, fontSize) => {
   const ctx = canvas.getContext('2d')
   const defaultWidth = canvas.width / 2
   const defaultHeight = canvas.height / 2
-  const fontHeight = fontSize * lineHeight
+  const fontHeight = fontSize * 1.4
   const SEPARATOR = '\\n'
   const lines = text.split(SEPARATOR)
 
@@ -41,13 +41,14 @@ export const drawText = (canvas, text, fontSize, lineHeight) => {
   }
 }
 
-export const loadImage = (blob) => new Promise((resolve) => {
-  const img = new Image()
-  const reader = new FileReader()
-  reader.readAsDataURL(blob)
-  reader.onloadend = () => {
-    img.src = reader.result as string
-    img.crossOrigin = 'Anonymous'
-    img.onload = () => resolve(img)
-  }
-})
+export const loadImage = (blob) =>
+  new Promise((resolve) => {
+    const img = new Image()
+    const reader = new FileReader()
+    reader.readAsDataURL(blob)
+    reader.onloadend = () => {
+      img.src = reader.result as string
+      img.crossOrigin = 'Anonymous'
+      img.onload = () => resolve(img)
+    }
+  })

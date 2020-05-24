@@ -1,21 +1,19 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import { setCanvasFont, drawText, loadImage } from './utils.ts'
+import { ContentsContext } from '../../contexts/contents'
 import './Preview.scss'
 
 const Preview = ({
   width,
   height,
-  fontSize,
-  fontFamily,
   textColor,
-  lineHeight,
   backgroundColor,
   backgroundType,
   backgroundImage,
-  text,
   updateCanvas,
 }) => {
   const canvasRef = useRef(null)
+  const { text, fontSize, fontFamily } = useContext(ContentsContext).state
 
   useEffect(() => {
     const render = async () => {
@@ -32,13 +30,13 @@ const Preview = ({
           0, 0, canvas.width, canvas.height) // destination rectangle
       }
 
-      setCanvasFont(canvas, text, {
+      setCanvasFont(canvas, {
         color: textColor,
         size: fontSize,
-        font: fontFamily,
+        family: fontFamily,
       })
 
-      drawText(canvas, text, fontSize, lineHeight)
+      drawText(canvas, text, fontSize)
       updateCanvas(canvas.toDataURL())
     }
     render()
@@ -48,23 +46,20 @@ const Preview = ({
     fontSize,
     fontFamily,
     textColor,
-    lineHeight,
     backgroundColor,
     backgroundType,
     backgroundImage,
-    text,
     updateCanvas,
+    text,
   ])
 
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className='previewCanvas'
-        width={width}
-        height={height}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className='previewCanvas'
+      width={width}
+      height={height}
+    />
   )
 }
 
