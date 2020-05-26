@@ -1,17 +1,18 @@
-import React from "react";
-import { Icon } from "antd";
-import styled from "styled-components";
-const PROFILE_LINK = "https://github.com/godori";
+import React from 'react'
+import { Icon } from 'antd'
+import styled from 'styled-components'
+
+const PROFILE_LINK = 'https://github.com/godori'
 
 interface FooterProps {
-  project?: string;
+  project?: string
 }
 
 export const Footer: React.FC<FooterProps> = ({ project }) => (
   <FooterWrapper>
-    <div className="footerContent">
+    <div className='footerContent'>
       <Icon
-        type="github"
+        type='github'
         onClick={() => window.open(`${PROFILE_LINK}/${project}`)}
       />
       <Author onClick={() => window.open(PROFILE_LINK)}>
@@ -19,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ project }) => (
       </Author>
     </div>
   </FooterWrapper>
-);
+)
 
 const FooterWrapper = styled.div`
   flex-shrink: 0.3;
@@ -30,8 +31,8 @@ const FooterWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px;
-`;
+`
 
 const Author = styled.div`
   cursor: pointer;
-`;
+`
