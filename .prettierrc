@@ -10,5 +10,6 @@
   "bracketSpacing": true,
   "jsxSingleQuote": true,
   "useTabs": false,
-  "htmlWhitespaceSensitivity": "strict"
+  "htmlWhitespaceSensitivity": "strict",
+  "jsxBracketSameLine": true
 }

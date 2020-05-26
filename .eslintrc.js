@@ -26,12 +26,16 @@ module.exports = {
     },
   },
   plugins: [
+    'airbnb',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+    'eslint-plugin-prettier',
     'react',
     'jsx-a11y',
     'import',
     '@typescript-eslint',
     'react-hooks',
-    'eslint-plugin-prettier',
   ],
   rules: {
     'import/extensions': [

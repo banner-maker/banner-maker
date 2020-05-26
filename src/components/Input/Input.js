@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ContentsContext } from '../../contexts/contents'
 
-const Input = ({ color, onChange }) => (
-  <div className='inputWrapper'>
-    <input
-      className='textInput'
-      onChange={onChange}
-      name='text'
-      style={{ color }}
-      type='text'
-      size='40'
-      placeholder='Type text here :)'
-    />
-  </div>
-)
+const Input = ({ color }) => {
+  const { actions } = useContext(ContentsContext)
+
+  const handleChange = (e) => {
+    actions.setText(e.target.value)
+  }
+  return (
+    <div className='inputWrapper'>
+      <input
+        className='textInput'
+        onChange={(e) => handleChange(e)}
+        name='text'
+        style={{ color }}
+        type='text'
+        size='40'
+        placeholder='Type text here :)'
+      />
+    </div>
+  )
+}
 export default Input

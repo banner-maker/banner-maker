@@ -12,6 +12,7 @@ import { PICKER_TYPE } from './common/Constant'
 import { getContrastYIQ, getRandomHexColor } from './common/Utils'
 import SideTab from './components/SideTab'
 import BgImageSelectModal from './components/modal/BgImageSelectModal/BgImageSelectModal'
+import { ContentsProvider } from './contexts/contents'
 
 class App extends Component {
   constructor(props) {
@@ -26,13 +27,7 @@ class App extends Component {
       backgroundImage: null,
       backgroundColor: initColor,
       textColor: getContrastYIQ(initColor.slice(-6)),
-      text: 'Sample Text',
       href: '',
-      fontFamily: 'SF Pro',
-      fontFamilyList: ['SF Pro', 'Times New Roman', 'Helvetica', 'Courier'],
-      fontSizeList: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
-      fontSize: '40',
-      lineHeight: 1.4,
       bgModalOpen: false,
     }
   }
@@ -46,14 +41,6 @@ class App extends Component {
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-  }
-
-  handleFontSize = (fontSize) => {
-    this.setState({ fontSize })
-  }
-
-  handleFontFamily = (fontFamily) => {
-    this.setState({ fontFamily })
   }
 
   handleColorType = (colorType) => {
@@ -77,56 +64,35 @@ class App extends Component {
   }
 
   render() {
-    const {
-      textColor,
-      backgroundColor,
-      href,
-      text,
-      fontFamilyList,
-      fontSizeList,
-      width,
-      height,
-    } = this.state
+    const { textColor, backgroundColor, href, width, height } = this.state
     return (
-      <div className='App'>
-        <Header />
-        <div className='content'>
-          <SizeForm
-            width={width}
-            height={height}
-            onInputChange={this.handleInputChange}
-          />
-          <Preview
-            {...this.state}
-            updateCanvas={this.handleCanvasChange}
-          />
-          <Input
-            color={textColor}
-            onChange={this.handleInputChange}
-          />
-          <FontEditor
-            fontFamilyList={fontFamilyList}
-            fontSizeList={fontSizeList}
-            onFontSizeChange={this.handleFontSize}
-            onFontFamilyChange={this.handleFontFamily}
-          />
-          <Palette
-            backgroundColor={backgroundColor}
-            textColor={textColor}
-            onChange={this.colorChange}
-          />
-          <DownloadButton
-            href={href}
-            text={text}
-          />
-          <SideTab />
-          <BgImageSelectModal
-            open={this.state.bgModalOpen}
-            close={this.handleBgModal(false)}
-            setImage={this.setBackgroundImage}
-          />
+      <ContentsProvider>
+        <div className='App'>
+          <Header />
+          <div className='content'>
+            <SizeForm
+              width={width}
+              height={height}
+              onInputChange={this.handleInputChange}
+            />
+            <Preview {...this.state} updateCanvas={this.handleCanvasChange} />
+            <Input color={textColor} />
+            <FontEditor />
+            <Palette
+              backgroundColor={backgroundColor}
+              textColor={textColor}
+              onChange={this.colorChange}
+            />
+            <DownloadButton href={href} />
+            <SideTab />
+            <BgImageSelectModal
+              open={this.state.bgModalOpen}
+              close={this.handleBgModal(false)}
+              setImage={this.setBackgroundImage}
+            />
+          </div>
         </div>
-      </div>
+      </ContentsProvider>
     )
   }
 }

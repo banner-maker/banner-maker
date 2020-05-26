@@ -1,28 +1,30 @@
-import React from "react";
-import { Button } from "antd";
-import ReactGA from "react-ga";
-ReactGA.initialize("UA-80202920-2");
+import React, { useContext } from 'react'
+import { Button } from 'antd'
+import ReactGA from 'react-ga'
+import { ContentsContext } from '../../contexts/contents'
 
-const DownloadButton = ({ href, text }) => {
+ReactGA.initialize('UA-80202920-2')
+
+const DownloadButton = ({ href }) => {
+  const { text } = useContext(ContentsContext).state
   const sendLog = () => {
     ReactGA.event({
-      category: "DOWNLOAD",
-      action: "Click",
-      label: text
-    });
-  };
-
+      category: 'DOWNLOAD',
+      action: 'Click',
+      label: text,
+    })
+  }
   return (
-    <a href={href} download="banner-image.png">
+    <a href={href} download={`${text.split(' ').join('_')}.png`}>
       <Button
-        type="primary"
-        icon="download"
-        size="large"
+        type='primary'
+        icon='download'
+        size='large'
         onClick={() => sendLog()}>
         Download
       </Button>
     </a>
-  );
-};
+  )
+}
 
-export default DownloadButton;
+export default DownloadButton
