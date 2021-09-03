@@ -85,11 +85,11 @@ class App extends Component {
             />
             <DownloadButton href={href} />
             <SideTab />
-            <BgImageSelectModal
-              open={this.state.bgModalOpen}
-              close={this.handleBgModal(false)}
-              setImage={this.setBackgroundImage}
-            />
+            {/*<BgImageSelectModal*/}
+            {/*  open={this.state.bgModalOpen}*/}
+            {/*  close={this.handleBgModal(false)}*/}
+            {/*  setImage={this.setBackgroundImage}*/}
+            {/*/>*/}
           </div>
         </div>
       </ContentsProvider>

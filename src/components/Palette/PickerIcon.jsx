@@ -1,71 +1,75 @@
-import React, { useState } from "react";
-import MyColorPicker from "./MyColorPicker";
-import { PICKER_TYPE } from "common/Constant";
-import { getContrastYIQ } from "common/Utils";
-import { Icon } from "antd";
+import React, { useState } from 'react'
+import MyColorPicker from './MyColorPicker'
+import { PICKER_TYPE } from 'common/Constant'
+import { getContrastYIQ } from 'common/Utils'
+import { BgColorsOutlined, FontColorsOutlined } from '@ant-design/icons'
 
 const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
-  const [showPicker, setShowPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(false)
 
   const handleClose = () => {
-    setShowPicker(false);
-  };
+    setShowPicker(false)
+  }
 
   const handleClick = () => {
-    setShowPicker(!showPicker);
-  };
+    setShowPicker(!showPicker)
+  }
 
   const colorRect = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "40px",
-    height: "40px",
-    border: "1px solid #fff",
-    borderRadius: "4px",
-    cursor: "pointer",
-    margin: "5px",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '40px',
+    height: '40px',
+    border: '1px solid #fff',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    margin: '5px',
     backgroundColor:
       pickerType === PICKER_TYPE.BACKGROUND
         ? hexColor
-        : getContrastYIQ(hexColor.slice(-6))
-  };
+        : getContrastYIQ(hexColor.slice(-6)),
+  }
 
   const icon = {
     color:
       pickerType === PICKER_TYPE.BACKGROUND
         ? getContrastYIQ(hexColor.slice(-6))
         : hexColor,
-    fontSize: "1.6em"
-  };
+    fontSize: '1.6em',
+  }
 
   const popover = {
-    position: "absolute",
-    zIndex: "2",
-    top: "-192px",
-    left: "-75px"
-  };
+    position: 'absolute',
+    zIndex: '2',
+    top: '-215px',
+    left: '-75px',
+  }
 
   // popover will be removed when you click the cover
   const cover = {
-    position: "fixed",
-    top: "0px",
-    right: "0px",
-    bottom: "0px",
-    left: "0px"
-  };
+    position: 'fixed',
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+  }
 
   const handleChange = (colors, event) => {
-    pickerHandler({ ...colors, event, pickerType });
-  };
+    pickerHandler({ ...colors, event, pickerType })
+  }
 
   return (
-    <div className="pickerWrapper" style={{ position: "relative" }}>
+    <div className='pickerWrapper' style={{ position: 'relative' }}>
       <div
-        className="colorRect"
+        className='colorRect'
         style={colorRect}
         onClick={() => handleClick()}>
-        <Icon type={iconName} style={icon} />
+        {pickerType == PICKER_TYPE.BACKGROUND ? (
+          <BgColorsOutlined style={icon} />
+        ) : (
+          <FontColorsOutlined style={icon} />
+        )}
       </div>
       {showPicker && (
         <div style={popover}>
@@ -78,7 +82,7 @@ const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PickerIcon;
+export default PickerIcon

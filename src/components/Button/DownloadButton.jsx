@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import { Button } from 'antd'
+import { DownloadOutlined } from '@ant-design/icons'
+
 import ReactGA from 'react-ga'
 import { ContentsContext } from '../../contexts/contents'
 
@@ -18,9 +20,10 @@ const DownloadButton = ({ href }) => {
     <a href={href} download={`${text.split(' ').join('_')}.png`}>
       <Button
         type='primary'
-        icon='download'
-        size='large'
-        onClick={() => sendLog()}>
+        shape='round'
+        icon={<DownloadOutlined />}
+        onClick={() => sendLog()}
+        size='large'>
         Download
       </Button>
     </a>

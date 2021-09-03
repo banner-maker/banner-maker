@@ -1,26 +1,26 @@
-import React from "react";
-import MySwatch from "./MySwatch";
+import React from 'react'
+import MySwatch from './MySwatch'
 
 export const Swatches = ({ colors, onClick, onSwatchHover }) => {
   const styles = {
     swatches: {
-      marginTop: "5px",
-      display: "flex",
-      flexDirecection: "row",
-      flexFlow: "row wrap",
-      justifyContent: "center",
-      marginBottom: "5px"
-    }
-  };
+      marginTop: '5px',
+      display: 'flex',
+      flexDirecection: 'row',
+      flexFlow: 'row wrap',
+      justifyContent: 'center',
+      marginBottom: '5px',
+    },
+  }
 
   return (
     <div style={styles.swatches}>
       {colors.map((color, idx) => {
-        let edge = "";
+        let edge = ''
         if (idx === 8) {
-          edge = "bottomLeft";
+          edge = 'bottomLeft'
         } else if (idx === 15) {
-          edge = "bottomRight";
+          edge = 'bottomRight'
         }
         return (
           <MySwatch
@@ -30,10 +30,10 @@ export const Swatches = ({ colors, onClick, onSwatchHover }) => {
             onSwatchHover={onSwatchHover}
             edge={edge}
           />
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default Swatches;
+export default Swatches

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'antd'
+import Icon from '@ant-design/icons'
 import styled from 'styled-components'
 
 const PROFILE_LINK = 'https://github.com/godori'
