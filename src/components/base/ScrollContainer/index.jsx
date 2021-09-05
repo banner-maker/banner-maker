@@ -1,1 +1,1 @@
-export { default } from './ScrollContainer';
+export { default } from './ScrollContainer'

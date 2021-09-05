@@ -1,1 +1,1 @@
-export { default } from './UnsplashContainer';
+export { default } from './UnsplashContainer'
