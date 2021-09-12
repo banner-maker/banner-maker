@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext } from 'react'
-import { setCanvasFont, drawText, loadImage } from './utils.ts'
+import { setCanvasFont, drawText } from './utils.ts'
 import { ContentsContext } from '../../contexts/contents'
 import './Preview.scss'
 
@@ -20,23 +20,31 @@ const Preview = ({
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
 
-      if (backgroundType === 'color') {
+      if (backgroundType === 'color' && backgroundImage === null) {
         ctx.fillStyle = backgroundColor
         ctx.fillRect(0, 0, canvas.width, canvas.height)
+        setCanvasFont(canvas, {
+          color: textColor,
+          size: fontSize,
+          family: fontFamily,
+        })
+        drawText(canvas, text, fontSize)
       } else {
-        const img = await loadImage(backgroundImage)
-        // prettier-ignore
-        ctx.drawImage(img, 0, 0, img.width, img.height, // source rectangle
-          0, 0, canvas.width, canvas.height) // destination rectangle
+        const img = new Image()
+        img.src = backgroundImage
+        img.crossOrigin = 'Anonymous'
+        img.onload = () => {
+          // prettier-ignore
+          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height)
+          ctx.filter = 'blur'
+          setCanvasFont(canvas, {
+            color: textColor,
+            size: fontSize,
+            family: fontFamily,
+          })
+          drawText(canvas, text, fontSize)
+        }
       }
-
-      setCanvasFont(canvas, {
-        color: textColor,
-        size: fontSize,
-        family: fontFamily,
-      })
-
-      drawText(canvas, text, fontSize)
       updateCanvas(canvas.toDataURL())
     }
     render()

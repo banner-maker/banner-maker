@@ -1,7 +1,5 @@
 import React from 'react'
 import { CustomPicker } from 'react-color'
-import reactCSS, { handleHover } from 'reactcss'
-import styled from 'styled-components'
 import { SWATCH_PRESET } from 'common/Constant'
 import {
   Saturation,

@@ -1,6 +1,7 @@
 export const PICKER_TYPE = {
   BACKGROUND: 'background',
   TEXT: 'text',
+  IMAGE: 'image',
 }
 export type picker = 'bg' | 'text'
 

@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import MyColorPicker from './MyColorPicker'
 import { PICKER_TYPE } from 'common/Constant'
 import { getContrastYIQ } from 'common/Utils'
-import { BgColorsOutlined, FontColorsOutlined } from '@ant-design/icons'
+import {
+  BgColorsOutlined,
+  FontColorsOutlined,
+  PictureOutlined,
+} from '@ant-design/icons'
 
 const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
   const [showPicker, setShowPicker] = useState(false)
@@ -61,16 +65,26 @@ const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
 
   return (
     <div className='pickerWrapper' style={{ position: 'relative' }}>
-      <div
-        className='colorRect'
-        style={colorRect}
-        onClick={() => handleClick()}>
-        {pickerType == PICKER_TYPE.BACKGROUND ? (
-          <BgColorsOutlined style={icon} />
-        ) : (
-          <FontColorsOutlined style={icon} />
-        )}
-      </div>
+      {pickerType === PICKER_TYPE.IMAGE ? (
+        <div
+          className='colorRect'
+          style={colorRect}
+          onClick={() => handleClick()}>
+          <PictureOutlined />
+        </div>
+      ) : (
+        <div
+          className='colorRect'
+          style={colorRect}
+          onClick={() => handleClick()}>
+          {pickerType == PICKER_TYPE.BACKGROUND ? (
+            <BgColorsOutlined style={icon} />
+          ) : (
+            <FontColorsOutlined style={icon} />
+          )}
+        </div>
+      )}
+
       {showPicker && (
         <div style={popover}>
           <div style={cover} onClick={() => handleClose()} />

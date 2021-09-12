@@ -11,8 +11,8 @@ import { Header } from './components/Header'
 import { PICKER_TYPE } from './common/Constant'
 import { getContrastYIQ, getRandomHexColor } from './common/Utils'
 import SideTab from './components/SideTab'
-import BgImageSelectModal from './components/modal/BgImageSelectModal/BgImageSelectModal'
 import { ContentsProvider } from './contexts/contents'
+import { getRandomImageUrl } from './common/Utils.js'
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends Component {
       width: '700',
       height: '350',
       backgroundType: 'color',
-      backgroundImage: null,
+      backgroundImage: getRandomImageUrl(700, 350),
       backgroundColor: initColor,
       textColor: getContrastYIQ(initColor.slice(-6)),
       href: '',
@@ -32,10 +32,21 @@ class App extends Component {
     }
   }
 
-  colorChange = ({ hex, hsl, pickerType }) => {
-    this.setState({
+  colorChange = ({ hex, pickerType }) => {
+    let params = {
       [`${pickerType}Color`]: hex,
       backgroundType: 'color',
+    }
+    if (pickerType === PICKER_TYPE.BACKGROUND) {
+      params.backgroundImage = null
+    }
+    this.setState(params)
+  }
+
+  setBackground = (width, height) => {
+    this.setState({
+      backgroundType: 'image',
+      backgroundImage: getRandomImageUrl(width, height),
     })
   }
 
@@ -51,17 +62,17 @@ class App extends Component {
     this.setState({ href })
   }
 
-  handleBgModal = (open) => () => {
-    this.setState({ bgModalOpen: open })
-  }
-
-  setBackgroundImage = (blob) => {
-    this.setState({
-      backgroundType: 'image',
-      backgroundImage: blob,
-      bgModalOpen: false,
-    })
-  }
+  // handleBgModal = (open) => () => {
+  //   this.setState({ bgModalOpen: open })
+  // }
+  //
+  // setBackgroundImage = (image) => {
+  //   this.setState({
+  //     backgroundType: 'image',
+  //     backgroundImage: image,
+  //     bgModalOpen: false,
+  //   })
+  // }
 
   render() {
     const { textColor, backgroundColor, href, width, height } = this.state
@@ -82,14 +93,12 @@ class App extends Component {
               backgroundColor={backgroundColor}
               textColor={textColor}
               onChange={this.colorChange}
+              width={width}
+              height={height}
+              handleImage={() => this.setBackground(width, height)}
             />
             <DownloadButton href={href} />
             <SideTab />
-            {/*<BgImageSelectModal*/}
-            {/*  open={this.state.bgModalOpen}*/}
-            {/*  close={this.handleBgModal(false)}*/}
-            {/*  setImage={this.setBackgroundImage}*/}
-            {/*/>*/}
           </div>
         </div>
       </ContentsProvider>

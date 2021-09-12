@@ -7,4 +7,10 @@ export const getContrastYIQ = (color) => {
 }
 
 // eslint-disable-next-line
-export const getRandomHexColor = () => `#${`0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6)}`
+export const getRandomHexColor = () =>
+  `#${`0${(~~(Math.random() * 16777215)).toString(16)}`.slice(-6)}`
+
+export const getRandomNumber = (range) => Math.floor(Math.random() * range)
+
+export const getRandomImageUrl = (width, height) =>
+  `https://picsum.photos/seed/${getRandomNumber(1084)}/${width}/${height}`
