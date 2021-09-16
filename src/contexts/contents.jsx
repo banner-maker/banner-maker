@@ -15,7 +15,7 @@ const ContentsContext = createContext({
 
 const ContentsProvider = ({ children }) => {
   const [text, setText] = useState('Sample Text')
-  const [fontSize, setFontSize] = useState('40')
+  const [fontSize, setFontSize] = useState('50')
   const [fontFamily, setFontFamily] = useState('Helvetica')
 
   const value = {
