@@ -29,6 +29,7 @@ const Preview = ({
           family: fontFamily,
         })
         drawText(canvas, text, fontSize)
+        updateCanvas(canvas.toDataURL())
       } else {
         const img = new Image()
         img.src = backgroundImage
@@ -43,9 +44,9 @@ const Preview = ({
             family: fontFamily,
           })
           drawText(canvas, text, fontSize)
+          updateCanvas(canvas.toDataURL())
         }
       }
-      updateCanvas(canvas.toDataURL())
     }
     render()
   }, [
