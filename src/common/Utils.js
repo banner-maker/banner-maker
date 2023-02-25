@@ -13,4 +13,11 @@ export const getRandomHexColor = () =>
 export const getRandomNumber = (range) => Math.floor(Math.random() * range)
 
 export const getRandomImageUrl = (width, height) =>
-  `https://picsum.photos/seed/${getRandomNumber(1084)}/${width}/${height}`
+  fetch(
+    `https://picsum.photos/seed/${getRandomNumber(1084)}/${width}/${height}`,
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`)
+    }
+    return res.url
+  })

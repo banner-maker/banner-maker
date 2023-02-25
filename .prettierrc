@@ -11,5 +11,6 @@
   "jsxSingleQuote": true,
   "useTabs": false,
   "htmlWhitespaceSensitivity": "strict",
+  "singleAttributePerLine": true,
   "jsxBracketSameLine": true
 }

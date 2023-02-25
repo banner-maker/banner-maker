@@ -94,6 +94,14 @@ input:focus::-webkit-input-placeholder {
   }
 }
 
+.toolWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 730px;
+}
+
 .paletteWrapper {
   position: relative;
   display: flex;
@@ -106,12 +114,13 @@ input:focus::-webkit-input-placeholder {
 .huePicker {
   padding: 20px;
 }
+
 .editorWrapper {
   display: flex;
   flex-direction: row;
-  width: 400px;
-  margin: 8px;
-  padding: 5px;
+  // width: 280px;
+  // margin: 8px;
+  // padding: 5px;
   justify-content: center;
   align-items: center;
 }
@@ -122,4 +131,36 @@ input:focus::-webkit-input-placeholder {
 
 .fontSelect {
   font-weight: 200;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+@import url(https://fonts.googleapis.com/css?family=Nanum+Myeongjo);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+KR);
+@import url(https://fonts.googleapis.com/css?family=Do+Hyeon);
+@import url(https://fonts.googleapis.com/css?family=Yeon+Sung&subset=korean);
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic+Coding&family=Nanum+Pen+Script&family=Noto+Serif+KR&family=Song+Myung&display=swap');
+@font-face {
+  font-family: 'SANJUGotgam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANJUGotgam.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CookieRun-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CookieRunOTF-Black';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Black00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+font-family: 'CookieRunOTF-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

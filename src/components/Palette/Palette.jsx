@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import PickerIcon from './PickerIcon.jsx'
 import { PICKER_TYPE } from 'common/Constant'
 import { PictureOutlined } from '@ant-design/icons'
+
 const Palette = ({ textColor, backgroundColor, onChange, handleImage }) => {
   const paletteWrapper = {
     display: 'flex',
@@ -20,6 +21,22 @@ const Palette = ({ textColor, backgroundColor, onChange, handleImage }) => {
     cursor: 'pointer',
     margin: '5px',
   }
+
+  // const { state, actions } = useContext(ContentsContext)
+
+  // handleBackgroundColor = ({ hex, pickerType }) => {
+  //   let params = {
+  //     [`${pickerType}Color`]: hex,
+  //     backgroundType: 'color',
+  //   }
+
+  //   if (pickerType === PICKER_TYPE.BACKGROUND) {
+  //     // params.backgroundImage = null
+  //     actions.setBackgroundImage(null)
+  //     actions.setBackgroundColor(hex)
+  //   }
+  //   actions.setFontColor(hex)
+  // }
 
   return (
     <div className='paletteWrapper' style={paletteWrapper}>
