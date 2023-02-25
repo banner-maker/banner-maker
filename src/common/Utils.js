@@ -12,12 +12,21 @@ export const getRandomHexColor = () =>
 
 export const getRandomNumber = (range) => Math.floor(Math.random() * range)
 
-export const getRandomImageUrl = (width, height) =>
+export const getRandomImageDataUrl = (width, height) =>
   fetch(
     `https://picsum.photos/seed/${getRandomNumber(1084)}/${width}/${height}`,
-  ).then((res) => {
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`)
-    }
-    return res.url
-  })
+  )
+    .then(
+      (blob) =>
+        new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.readAsDataURL(blob)
+          reader.onloadend = () => {
+            resolve(reader.result)
+          }
+        }),
+    )
+    .catch((error) => {
+      console.error(error)
+      throw error
+    })

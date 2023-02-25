@@ -3,7 +3,7 @@ import PickerIcon from './PickerIcon.jsx'
 import { PICKER_TYPE } from 'common/Constant'
 import { PictureOutlined } from '@ant-design/icons'
 import { ContentsContext } from 'contexts/contents.jsx'
-import { getRandomImageUrl } from 'common/Utils.js'
+import { getRandomImageDataUrl } from 'common/Utils.js'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Spin } from 'antd'
 
@@ -29,13 +29,13 @@ const NewPalette = ({}) => {
       actions.setBackgroundImage(null)
       actions.setBackgroundColor(hex)
     } else {
-      actions.setBackgroundImage(getRandomImageUrl(width, height))
+      actions.setBackgroundImage(getRandomImageDataUrl(width, height))
     }
   }
 
   const handleBackgroundImage = useCallback(async () => {
     setLoading(true)
-    getRandomImageUrl(width, height)
+    getRandomImageDataUrl(width, height)
       .then((imgUrl) => {
         actions.setBackgroundImage(imgUrl)
         actions.setPickerType(PICKER_TYPE.IMAGE)
