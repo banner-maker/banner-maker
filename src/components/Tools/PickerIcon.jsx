@@ -20,15 +20,6 @@ const PickerIcon = ({ hexColor, pickerType, pickerHandler }) => {
   }
 
   const colorRect = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '40px',
-    height: '40px',
-    border: '1px solid #fff',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    margin: '5px',
     backgroundColor:
       pickerType === PICKER_TYPE.BACKGROUND
         ? hexColor
@@ -40,7 +31,6 @@ const PickerIcon = ({ hexColor, pickerType, pickerHandler }) => {
       pickerType === PICKER_TYPE.BACKGROUND
         ? getContrastYIQ(hexColor.slice(-6))
         : hexColor,
-    fontSize: '1.6em',
   }
 
   const popover = {
