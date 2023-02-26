@@ -21,6 +21,7 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
     textColor,
     backgroundColor,
     backgroundImage,
+    underline,
   } = useContext(ContentsContext).state
   const { setText } = useContext(ContentsContext).actions
 
@@ -88,6 +89,8 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
           height: `${height}px`,
           backgroundColor: backgroundImage ? '' : backgroundColor,
           backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           color: textColor,
           fontSize: `${fontSize}px`,
           fontFamily: fontFamily,

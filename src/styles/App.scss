@@ -97,15 +97,15 @@ input:focus::-webkit-input-placeholder {
 .toolWrapper {
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  width: 730px;
+  width: 800px;
 }
 
 .paletteWrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding-top: 5px;
   padding-bottom: 10px;

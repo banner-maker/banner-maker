@@ -1,0 +1,18 @@
+  .colorRect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 1.4em; 
+    color: white; 
+    transition: background-color 0.2s ease-in-out;
+}
+
+.colorRect:hover {
+  background-color: #bbb;
+}

@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
-import { ContentsContext } from '../contexts/contents'
+import { ContentsContext } from '../../contexts/contents'
 import { Select } from 'antd'
+import PickerIcon from './PickerIcon.jsx'
+import { PICKER_TYPE } from 'common/Constant'
+import './Tools.scss'
+
 const { Option } = Select
 
 interface FontEditorProps {}
@@ -37,6 +41,12 @@ const FontEditor: React.FC<FontEditorProps> = () => {
 
   return (
     <div className='editorWrapper'>
+      <PickerIcon
+        pickerType={PICKER_TYPE.TEXT}
+        hexColor={state.textColor}
+        pickerHandler={({ hex }) => actions.setTextColor(hex)}
+      />
+
       <div className='editoritem'>
         <Select
           className='fontSelect'
