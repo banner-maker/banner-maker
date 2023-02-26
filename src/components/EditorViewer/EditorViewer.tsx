@@ -21,9 +21,9 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
     textColor,
     backgroundColor,
     backgroundImage,
+    underline,
   } = useContext(ContentsContext).state
-
-  const { state, actions } = useContext(ContentsContext)
+  const { setText } = useContext(ContentsContext).actions
 
   const [contents, setContents] = useState('')
 
@@ -35,9 +35,8 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
     })
       .then((canvas) => {
         const link = document.createElement('a')
-        link.download = `${text}.png`
+        link.download = `${text.split(' ').join('_')}.png`
         link.href = canvas.toDataURL('image/png')
-        console.log('link:', link)
         link.click()
       })
       .catch((err) => {
@@ -45,6 +44,10 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
       })
   }
 
+  const handleKeyUp = (event) => {
+    const editableDiv = event.target
+    setText(editableDiv.textContent.trim())
+  }
   // TODO: selection 영역 구하기
   // const handleMouseUp = (e) => {
   // var selection = window.getSelection()
@@ -78,14 +81,16 @@ const EditorViewer: React.FC<EditorViewerProps> = ({}) => {
         id='editor'
         className='editor'
         contentEditable='true'
-        // onInput={onContentsChange}
-        // onKeyDown={handleKeydown}
+        spellCheck={false}
+        onKeyUp={handleKeyUp}
         suppressContentEditableWarning={true}
         style={{
           width: `${width}px`,
           height: `${height}px`,
           backgroundColor: backgroundImage ? '' : backgroundColor,
           backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           color: textColor,
           fontSize: `${fontSize}px`,
           fontFamily: fontFamily,

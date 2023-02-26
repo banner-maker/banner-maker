@@ -42,7 +42,7 @@ const SizeForm: React.FC<SizeFormProps> = ({}) => {
 const SizeFormWrapper = styled.div`
   display: flex;
   width: 300px;
-  padding: 15px;
+  padding: 10px;
   & .SizeForm__input:first-child {
     margin-right: 5px;
   }
