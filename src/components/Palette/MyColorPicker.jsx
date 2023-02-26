@@ -103,7 +103,7 @@ export const MyColorPicker = ({ hex, hsl, hsv, onChange, onSwatchHover }) => {
           onSwatchHover={onSwatchHover}
         />
       </div>
-      <div style={styles.triangle} />
+      {/* <div style={styles.triangle} /> */}
     </div>
   )
 }

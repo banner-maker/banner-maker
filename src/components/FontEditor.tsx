@@ -9,11 +9,17 @@ const FontEditor: React.FC<FontEditorProps> = () => {
   const { state, actions } = useContext(ContentsContext)
   const fontSizeList = [20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 140, 180, 240]
   const fontFamilyList = [
-    'Monaco',
+    'SANJUGotgam',
+    'Song Myung',
+    'Gowun Dodum',
+    'Nanum Gothic Coding',
+    'Nanum Pen Script',
+    'Noto Serif KR',
     'Nanum Myeongjo',
     'Noto Sans KR',
     'Yeon Sung',
     'Do Hyeon',
+    'Monaco',
     'Lobster',
     'Times New Roman',
     'Impact',
@@ -21,11 +27,11 @@ const FontEditor: React.FC<FontEditorProps> = () => {
     'Courier',
   ]
 
-  const handleFontSize = (value) => {
+  const handleFontSize = (value: string) => {
     actions.setFontSize(value)
   }
 
-  const handleFontFamily = (value) => {
+  const handleFontFamily = (value: string) => {
     actions.setFontFamily(value)
   }
 
@@ -36,10 +42,14 @@ const FontEditor: React.FC<FontEditorProps> = () => {
           className='fontSelect'
           placeholder='font family'
           defaultValue={state.fontFamily}
-          style={{ width: 150 }}
+          style={{
+            width: 180,
+            fontFamily: state.fontFamily,
+            textAlign: 'left',
+          }}
           onChange={handleFontFamily}>
           {fontFamilyList.map((family) => (
-            <Option key={family} value={family}>
+            <Option style={{ fontFamily: family }} key={family} value={family}>
               {family}
             </Option>
           ))}
@@ -48,7 +58,7 @@ const FontEditor: React.FC<FontEditorProps> = () => {
 
       <div className='editoritem'>
         <Select
-          style={{ width: 150 }}
+          style={{ width: 80 }}
           placeholder='font size'
           defaultValue={state.fontSize}
           optionFilterProp='children'

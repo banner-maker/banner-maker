@@ -8,7 +8,7 @@ import {
   PictureOutlined,
 } from '@ant-design/icons'
 
-const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
+const PickerIcon = ({ hexColor, pickerType, pickerHandler }) => {
   const [showPicker, setShowPicker] = useState(false)
 
   const handleClose = () => {
@@ -46,7 +46,7 @@ const PickerIcon = ({ hexColor, pickerType, iconName, pickerHandler }) => {
   const popover = {
     position: 'absolute',
     zIndex: '2',
-    top: '-215px',
+    // top: '215px',
     left: '-75px',
   }
 

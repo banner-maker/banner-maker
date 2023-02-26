@@ -1,34 +1,34 @@
-import React from "react";
-import { Select } from "antd";
+import React from 'react'
+import { Select } from 'antd'
 
 interface SelectMenuProps {
-  selectList: (string | number)[];
-  typeLabel: string;
-  handleChange: (option: string) => void;
+  selectList: (string | number)[]
+  typeLabel: string
+  handleChange: (option: string) => void
 }
 
 const SelectMenu: React.FC<SelectMenuProps> = ({
   selectList,
   typeLabel,
-  handleChange
+  handleChange,
 }) => {
   const optionList = selectList.map((option, index) => (
     <Select.Option value={option} key={index}>
       {option}
     </Select.Option>
-  ));
+  ))
 
   return (
-    <div className="editoritem">
+    <div className='editoritem'>
       <Select
-        className="fontSelect"
+        className='fontSelect'
         defaultValue={typeLabel}
         style={{ width: 120 }}
         onChange={handleChange}>
         {optionList}
       </Select>
     </div>
-  );
-};
+  )
+}
 
-export default SelectMenu;
+export default SelectMenu

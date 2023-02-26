@@ -1,0 +1,43 @@
+.wrapper {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+}
+p {
+  margin: 0
+}
+
+.editor{
+  display: flex;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // background-image: url('/images/hoho.jpeg');
+  // background-color: #FFF8E7;
+  margin-bottom: 50px;
+}
+.title{
+  // color: #ff7875;
+  // font-size: 70px;
+  // font-family: SANJUGotgam
+  // font-family: CWDangamAsac-Bold 
+  // font-family: Black Han Sans 
+}
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+
+
+@font-face {
+  font-family: 'SANJUGotgam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANJUGotgam.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CWDangamAsac-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
